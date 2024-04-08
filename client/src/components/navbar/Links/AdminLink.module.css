@@ -1,0 +1,8 @@
+.out {
+    font-size: 1.3em;
+    color: white;
+}
+
+.out:hover {
+    color: #DB9144;
+}

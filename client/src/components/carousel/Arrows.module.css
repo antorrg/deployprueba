@@ -1,0 +1,46 @@
+.arrowPrev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
+    left: 10px; /* Ajusta la posición a la izquierda */
+    z-index: 1;
+   }
+  
+  .arrow:hover {
+    background-color: #0056b3; /* Cambia el color al pasar el ratón por encima */
+  }
+
+
+.arrowNext {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
+    right: 10px; /* Ajusta la posición a la izquierda */
+    z-index: 1;
+   }
+   .arrow:hover {
+     background-color: #0056b3; /* Cambia el color al pasar el ratón por encima */
+   }
+  

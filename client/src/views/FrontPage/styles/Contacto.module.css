@@ -1,0 +1,19 @@
+.contact{
+    position: relative;
+    top: 10%;
+    left: 40%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+
+    border-radius: 0.5em;
+    width: 80%;
+    height: 40%;
+  
+  
+    max-height: 120vh;
+
+    display: grid;
+    /* grid-template-columns: 5% 95%; */
+  
+}

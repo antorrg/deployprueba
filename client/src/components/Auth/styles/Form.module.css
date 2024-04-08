@@ -1,0 +1,87 @@
+.formContainer{
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  width: 80%; /* Increase to 75% for a 15% increase */
+  height: 70%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,255,246,1) 0%, rgba(85,83,80,1) 96%, rgba(64,63,62,1) 100%);
+  /* background-color: rgb(255, 255, 230); */
+  padding: 1.5rem;
+  font-size: medium;
+  font-weight:700;
+  border: 1px solid rgb(255, 245, 221);
+  border-radius:1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 
+  0 0 5px rgb(255, 245, 221), /* Amarillo casi naranja */
+  0 0 10px rgb(255, 240, 202),
+  0 0 15px rgb(255, 235, 183),
+  0 0 20px rgb(255, 230, 164),
+  0 0 25px rgb(255, 225, 145), /* Amarillo claro */
+  0 0 30px rgb(255, 255, 255); /* Blanco */
+  
+  overflow: auto;
+  
+}
+
+
+
+/* stylesComp/FormEdit.module.css
+
+.formContainer {
+  animation: fadeIn 0.5s ease-in-out;
+  padding: 1rem;
+  background-color: rgb(219, 231, 216);
+  border: 1px solid gray;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 80vh;
+  overflow: auto;
+
+  }
+  
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  */
+
+ /* input, select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    font-size: 1.5rem; /* Tamaño de la fuente */
+    /*font-weight: bold; /* Negrita */
+    /*color: rgb(22, 22, 2);
+  }
+  */
+
+ /* @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes expand {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  .window{
+    animation: expand 0.5s 0.5s ease-in-out;
+  } */

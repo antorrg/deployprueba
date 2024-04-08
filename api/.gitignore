@@ -1,0 +1,30 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Dependency directories
+/pnpm-lock.yaml
+/pnpm-debug.log
+
+# Optional npm cache directory
+.npm
+.env
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output directory
+/dist
+
+# IDE files
+.idea
+.vscode
+.env
+
+# OS-generated files
+.DS_Store
+Thumbs.db

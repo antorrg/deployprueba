@@ -1,0 +1,19 @@
+.generalContainer{
+ height: 100%;
+ width: 100%;
+}
+.errorContainer {
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+   
+}
+.error{
+    background-color: aliceblue;
+    width: 35rem;
+    height: 25rem;
+    border-radius: 15rem;
+    border: 2px solid brown;
+    border-color: brown;
+}

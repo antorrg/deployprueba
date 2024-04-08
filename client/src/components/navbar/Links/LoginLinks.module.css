@@ -1,0 +1,37 @@
+.out {
+    font-size: 1.3em;
+    color: white;
+}
+
+.out:hover {
+    color: #DB9144;
+}
+
+.in {
+    font-size: 1.3em;
+    color: white;
+}
+
+.in:hover {
+    color: #DB9144;
+}
+
+.ingresar {
+    font-size: 1.3em;
+    color: white;
+}
+
+.ingresar:hover {
+    color: #DB9144;
+
+}
+
+@media only screen and (max-width: 768px) {
+
+    .ingresar {
+        display: none;
+    }
+
+
+
+}

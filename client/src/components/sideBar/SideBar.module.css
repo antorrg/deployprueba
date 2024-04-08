@@ -1,0 +1,12 @@
+.sideBarContainer {
+    width: 180px; /* Ancho de la barra lateral */
+    height: 90vh; /* Altura completa de la pantalla */
+    background-color: rgb(252, 219, 182); /* Color de fondo de la barra lateral */
+    position: fixed; /* Fijar la barra lateral en su lugar */
+    top: 6rem; /* Alinear la barra lateral en la parte superior */
+    left: 0; /* Alinear la barra lateral a la izquierda */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+ 
