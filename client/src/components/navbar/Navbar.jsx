@@ -79,7 +79,9 @@ const Navbar = () => {
             <LoginLinks />
             <AdminLink />
             <li>
+              {authenticated?
               <a className={style.out} href='/' onClick={handleClick}>Salir</a>
+              :null}
 
             </li>
           </ul>
