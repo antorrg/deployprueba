@@ -2,7 +2,8 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 dotenv.config();
 const {SUDO_AUTH } = process.env;
-import { getEmails, getUserIdByEmail} from '../createSUs.js'
+import { getEmails, getUserIdByEmail} from '../SUcreate-protect/index.js'
+
 
 //! Este es un modulo que contiene solo Middlewares.
 
@@ -70,26 +71,24 @@ const verifyUsPas = async (req, res, next) => {
 const verifyDoNotDel = async (req, res, next) => {
   const {email1, email2}=getEmails();
   const {id }= req.params;
-  console.log('soy id ',id)
   try {
-    const adminEmails = [email1, email2];
-    for (const adminEmail of adminEmails) {
-      const user = await getUserIdByEmail(adminEmail);
-      if (id === user.id){return res.status(403).json({ error: ' Acción no permitida.' });}
+    const user1 = await getUserIdByEmail(email1);
+    const user2 = await getUserIdByEmail(email2);
+      if (id === user1.id || id === user2.id){return res.status(403).json({ error: ' Acción no permitida.' });}
         return next();
-    }
   } catch (error) {
     res.status(500).json({ error: 'Error interno del servidor.' });
   }
 };
+
 const notComparePassword = async (req, res, next) => {
   const {email1, email2}=getEmails();
-  const {id} = req.params;
+  const {id} = req.body;
   try {
-    const adminEmails = [email1, email2];
-    for (const adminEmail of adminEmails) {
-      const user = await getUserIdByEmail(adminEmail);
-      if (id === user.id){return res.status(403).json({ error: ' Acción no permitida (9).' });}
+    const user1 = await getUserIdByEmail(email1);
+    const user2 = await getUserIdByEmail(email2);
+    if(id === user1.id || id === user2.id){
+      return res.status(403).json({ error: ' Acción no permitida.' })
     }
     return next();
   } catch (error) {
@@ -106,3 +105,26 @@ export {
     notComparePassword
     
 }
+// const verifyUsAttributes = async (req, res, next) => {
+//   const {email1, email2}=getEmails();
+//   const id = req.params.id;
+//   const { email, role } = req.body;
+//   try {
+//     const user1 = await getUserIdByEmail(email1);
+//     const user2 = await getUserIdByEmail(email2);
+//     if(id === user1.id || id === user2.id){
+//       const userSel = (user1.id===id)?user1 : user2
+//       console.log('soy el señalado: ',userSel.email)
+//       if(userSel.email !== email ){
+//         console.log('los emails no son iguales')
+//         return res.status(403).json({ error: ' Acción no permitida.' })
+//       }else if(role !== userSel.role){
+//         console.log('los roles no son iguales')
+//         return res.status(403).json({ error: ' Acción no permitida.' })
+//       }
+//     }
+//     return next();
+//   } catch (error) {
+//     res.status(500).json({ error: 'Error interno del servidor.' });
+//   }
+// };

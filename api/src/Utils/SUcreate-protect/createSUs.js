@@ -1,4 +1,4 @@
-import { User } from '../db.js'; 
+import { User } from '../../db.js'; 
 import bcrypt from 'bcrypt'
 import dotenv from 'dotenv';
 dotenv.config();
@@ -92,7 +92,7 @@ const getUserIdByEmail = async (email) => {
       where: {
         email: email
       },
-      attributes: ['id', 'password']
+      attributes: ['id', 'email', 'password', 'role']
     });
     return user;
   } catch (error) {
