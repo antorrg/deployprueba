@@ -18,7 +18,7 @@ const { PORT } = process.env;
 
 app.listen(PORT, async () => {
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: false});
     await appUserTable();
     await fillTables();
     console.log(`El server está corriendo 🚴 🏃 en el puerto: ${PORT};

@@ -76,7 +76,7 @@ const userCreate = async (email, name, typeId, numberId, country) => {
           country: country,
         });
         const data = parsedUser(newUser);
-        console.log("data" + data);
+        //console.log("data" + data);
         //const token = generateToken(newUser);
         return { data };
       } catch (error) {

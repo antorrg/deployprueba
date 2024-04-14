@@ -7,6 +7,7 @@ import products from './products.js';
 import providers from './providers.js';
 import provinces from './provinces.js'
 import tipMecanica from './tipMecanica.js'
+import users from './users.js'
 
 export {
     categoriesImages,
@@ -17,5 +18,6 @@ export {
     products,
     providers,
     provinces,
-    tipMecanica
+    tipMecanica,
+    users
 };

@@ -1,4 +1,4 @@
-import {Service} from '../../db.js';
+import {Service, Car} from '../../db.js';
 import {emptyResServ} from '../../Utils/emptyRes.js';
 
 const getService = async () => {
@@ -6,7 +6,8 @@ const getService = async () => {
         const response = await Service.findAll({
             where:{
                 deletedAt:false,
-            }
+            }, 
+            include: [{ model: Car, attributes: ['id', 'patent'] }]
         });
         const data = response;
         if(data.length===0){return emptyResServ();};
@@ -21,7 +22,8 @@ const getServiceByQuery = async (CarId) => {
             const services = await Service.findAll({
                 where: {
                     CarId: CarId
-                },
+                }, 
+                include: [{ model: Car, attributes: ['id', 'patent'] }]
             });
     
             // Verificar si se encontraron servicios
@@ -40,7 +42,8 @@ const serviceById = async (id)=>{
         const response = await Service.findByPk(id,{
             where:{
                 deletedAt:false,
-            }
+            },
+            include: [{ model: Car, attributes: ['id', 'patent'] }]
         });
         const data = response;
         if(!data){throw new Error('Service not found!')}

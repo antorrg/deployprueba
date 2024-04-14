@@ -16,7 +16,7 @@ const DetailService = () => {
       dispatch(cleanDetails())
     }
     },[dispatch, id])
-
+    const att= service.Car?.patent
   
   return (
     <div>
@@ -27,6 +27,7 @@ const DetailService = () => {
     <br></br>
     <h1>Servicio: </h1>
     <ul>
+      <li>Patente: {att}</li>
       <li>Servicio Prestado: {service.type}</li>
       <li>Detalle:  {service.detail}</li>
       <li>Fecha entrada: {service.date_in}</li>

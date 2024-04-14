@@ -7,9 +7,9 @@ import sendChanges from './SendChanges'
 import styles from './styles/Form.module.css'
 
 const ChangeUser = ({carEdit, onClose}) => {
-    //console.log('soy el id del form: ', carEdit)
     const dispatch = useDispatch();
     const [selectedUserId, setSelectedUserId] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const users = useSelector((state)=>state.allUsers)
     useEffect(()=>{
@@ -21,7 +21,7 @@ const ChangeUser = ({carEdit, onClose}) => {
         
         const confirmed = await showConfirmationDialog('¿Está seguro de actualizar el vehiculo?');
     if (confirmed) {
-        // Llamar a la función userChange con el nuevo propietario seleccionado
+        // Llamar a la función sendChanges con el nuevo propietario seleccionado
         sendChanges(carEdit, selectedUserId, onClose);
         
     }
@@ -31,12 +31,45 @@ const ChangeUser = ({carEdit, onClose}) => {
         setSelectedUserId(e.target.value);
     };
 
+//<<<<<<<<<<<< searchbar >>>>>>>>>>>>>>>>>
+
+
+const handleSearch = () => {
+    if (searchTerm.trim() !== '') {
+        const userFound = users.find((user) => user.numberId === searchTerm);
+        if (userFound) {
+            setSelectedUserId(userFound.id);
+        }
+    } else {
+        setSelectedUserId(null); 
+    // Reiniciar el usuario seleccionado si el campo de búsqueda está vacío
+    }
+};
+const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+//<<<<<<<<inhabilitar el boton submit si no hay nada seleccionado>>>>>>>>>>>>>>>>>
+
  const permit = (!selectedUserId)? true :false
  
 
   return (
     <div className={styles.formContainer}>
         <h3>Seleccione un propietario: </h3>
+        <div>
+      <input
+        type="search"
+        placeholder={'Documento Nº...'}
+        value={searchTerm}
+        onChange={(event) => setSearchTerm(event.target.value)}
+        onKeyDown={handleKeyPress}
+        className=''
+      />
+      <GenericButton onClick={handleSearch} buttonText={'Buscar'}/>
+    </div>
+    <br></br>
     <form onSubmit = {handleSubmit}>
     <select value={selectedUserId} onChange={handleSelectChange}>
                     <option value="">Seleccione un propietario</option>

@@ -1,11 +1,18 @@
 import { User, Car } from "../../db.js";
+import {Op} from 'sequelize'
+import { getEmails } from "../../Utils/SUcreate-protect/index.js";
 import bcrypt from 'bcrypt'
 
+
 const getUsers = async () => {
+  const {email1,email2} = getEmails()  
   try {
     const response = await User.findAll({
       where: {
         deletedAt: false,
+        email: {
+          [Op.notIn]: [email1, email2] // Lista de correos electrónicos a excluir
+      }
       },
       include: [
         {
@@ -24,6 +31,7 @@ const getUsers = async () => {
     throw error;
   }
 };
+
 const userByQuery = async (numberId) => {
   try {
     const response = await User.findOne({

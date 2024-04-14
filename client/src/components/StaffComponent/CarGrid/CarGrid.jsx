@@ -23,7 +23,7 @@ const CarGrid = ({}) => {
 
  useEffect(()=>{
   if(name){
-    dispatch(carByPat(id))
+    dispatch(carByPat(name))
   }else{
     dispatch(getAllCars())
   }

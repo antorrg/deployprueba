@@ -1,6 +1,6 @@
 .modal {
   position: fixed;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   
@@ -15,7 +15,7 @@
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   
   
-  max-height: 120vh;
+  max-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
   /* Agrega esta línea para permitir el desplazamiento (scroll) */

@@ -20,13 +20,15 @@ const getCar = async () => {
         throw error;
     }
 }
-const getByQuery = async(patent)=>{
+const getByQuery = async (patent)=>{
+    console.log('soy el parametro: ', patent)
     try {
         const response = await Car.findOne({
-            where:{
-                patent:patent,
+            where: {
+                patent: patent,
                 deletedAt:false,
-            }, include: [
+            },
+             include: [
                 {
                   model: User,
                   attributes: ["name" , "id"],
