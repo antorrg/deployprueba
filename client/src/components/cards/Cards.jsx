@@ -7,9 +7,9 @@ const Cards = ({ info }) => {
     <div className={style.bigDiv}>
       {
         info && info.map((el) => {
-          const { titulo, imagen, descripcion } = el
+          const { titlePost, imgPost, textPost } = el
           return (
-            <Card titulo={titulo} imagen={imagen} descripcion={descripcion} />
+            <Card titulo={titlePost} imagen={imgPost} descripcion={textPost} />
           )
         })
       }

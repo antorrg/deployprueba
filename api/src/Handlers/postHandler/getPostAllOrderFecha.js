@@ -5,7 +5,7 @@ const getPostAllOrderFecha = async (req, res) => {
   const { order } = req.query;
   try {
     const data = await Post.findAll({
-      order: [["datePost", order]],
+      order: [["createdAt", order]],
       include: [{ model: CategoryPost, attributes: ["descCategory"] }],
     });
     res.status(200).json(data);

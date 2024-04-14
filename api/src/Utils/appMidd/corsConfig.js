@@ -1,9 +1,6 @@
-import dotenv from 'dotenv'
-dotenv.config();
-
 const corsConfig = (req, res, next) => {
 
-  res.header("Access-Control-Allow-Origin",  process.env.URL_CORS);
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
@@ -14,8 +11,11 @@ const corsConfig = (req, res, next) => {
     " GET, POST, OPTIONS, PATCH, PUT, DELETE, PATCH"
   );
   
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
     next();
-  
+  }
 };
 
 export default corsConfig;

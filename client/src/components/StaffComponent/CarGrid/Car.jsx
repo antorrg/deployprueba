@@ -33,7 +33,7 @@ const Car = ({ data }) => {
       <p>Patente: {patent}</p>
       <p>Marca: {mark}</p>
       <p>Modelo: {model}</p>
-      <Link to={`/admin/dett/${id}?type=car`}>Ver mas:</Link>
+      <Link to={`/admin/dett/${id}?type=car`}>Ver Vehiculo:</Link>
       <img src={picture} />
     </div>
   );

@@ -11,14 +11,14 @@ const getPostByCategory = async (req, res) => {
 
   try {
     const data = await Post.findAll({
-      where: { idCategory: idCategory },
+      where: {  CategoryPostIdCategory: idCategory },
       order: [[columnorder || "datePost", order || "DESC"]],
       include: [{ model: CategoryPost, attributes: ["descCategory"] }],
     });
 
     res.status(200).json(data);
   } catch (error) {
-    res.status(400).json({ error: "Error al obtener los Post" });
+    res.status(400).json({ error: "Error al obtener los Post ENTRA ACAA" });
   }
 };
 

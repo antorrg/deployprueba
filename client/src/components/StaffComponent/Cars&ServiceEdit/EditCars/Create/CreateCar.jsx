@@ -2,7 +2,7 @@ import style from '../styles/Modal.module.css'
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import  ValidCar  from '../CarServValidate';
-import { postCar } from '../SendPosts';
+import  postCar  from '../SendPosts';
 import GenericButton from '../../../../GenericButton/GenericButton';
 import ImgUpFire from '../../../../ImgUpFire/ImgUpFire'
 import showConfirmationDialog from '../../../../utils/sweetAlert';

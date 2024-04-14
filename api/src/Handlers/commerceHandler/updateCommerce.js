@@ -2,12 +2,14 @@ import { where, Op } from "sequelize";
 import { Commerce, Province } from "../../db.js";
 
 const updateCommerce = async (req, res) => {
-  const { idCommerce } = req.params;
+  const { id } = req.params;
   const updateData = req.body;
   const { idProvince, isMyCommerce } = req.body;
 
-  //verificar si recibe idCommerce
-  if (!idCommerce) {
+  console.log("aca");
+  console.log(updateData);
+  //verificar si recibe id
+  if (!id) {
     return res
       .status(400)
       .json({ error: "Se requiere id del Comercio a modificar" });
@@ -15,7 +17,7 @@ const updateCommerce = async (req, res) => {
 
   try {
     //verificar si el Comercio por id existe
-    const commerceSelected = await Commerce.findByPk(idCommerce);
+    const commerceSelected = await Commerce.findByPk(id);
     if (!commerceSelected) {
       return res.status(400).json({ error: "Comercio no encontrado" });
     }
@@ -56,7 +58,7 @@ const updateCommerce = async (req, res) => {
         {
           where: {
             id: {
-              [Op.ne]: commerceSelected.idCommerce, // Excluir el registro creado recientemente
+              [Op.ne]: commerceSelected.id, // Excluir el registro creado recientemente
             },
           },
         }
@@ -65,7 +67,7 @@ const updateCommerce = async (req, res) => {
 
     // Devolver los datos actualizados del Comercio
     const data = await Commerce.findOne({
-      where: { id: idCommerce },
+      where: { id: id },
       include: [{ model: Province, attributes: ["descProvince"] }],
     });
 

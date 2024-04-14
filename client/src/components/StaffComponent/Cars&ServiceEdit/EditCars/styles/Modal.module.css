@@ -3,78 +3,138 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255,255,246,1) 0%, rgba(85,83,80,1) 96%, rgba(64,63,62,1) 100%);
-  /* background-color: rgb(255, 255, 230); */
-  padding: 20px;
-  border: 1px solid rgb(255, 245, 221);
-  border-radius:1rem;
-  width: 40%; /* Increase to 75% for a 15% increase */
+  
+  /* background: radial-gradient(circle, rgba(255, 255, 246, 1) 0%, rgba(85, 83, 80, 1) 96%, rgba(64, 63, 62, 1) 100%); */
+  background-color: rgb(51, 47, 42);
+  
+  /* border: 1px solid rgb(255, 245, 221); */
+  border-radius: 0.5em;
+  width: 40%;
+  /* Increase to 75% for a 15% increase */
   height: 100%;
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-  box-shadow: 
-  0 0 5px rgb(255, 245, 221), /* Amarillo casi naranja */
-  0 0 10px rgb(255, 240, 202),
-  0 0 15px rgb(255, 235, 183),
-  0 0 20px rgb(255, 230, 164),
-  0 0 25px rgb(255, 225, 145), /* Amarillo claro */
-  0 0 30px rgb(255, 255, 255); /* Blanco */
-
-  max-height: 100vh;
-  overflow: auto; /* Agrega esta línea para permitir el desplazamiento (scroll) */
+  
+  
+  max-height: 120vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Agrega esta línea para permitir el desplazamiento (scroll) */
+  display: grid;
+  grid-template-columns: 5% 95%;
+  
+  
+  
 }
-.boton {
-  background: radial-gradient(circle, rgba(255,204,112,1) 0%, rgba(85,83,80,1) 98%, rgba(64,63,62,1) 100%);;
-    padding: 0.10rem 1rem; /* Ajusta el padding según tu preferencia */
-    font-size: 1rem; /* Tamaño de la fuente */
-    font-weight: bold; /* Negrita */
-    color: rgb(50, 49, 50);
-    border: none;
-    border-radius: 1rem;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+.divButtons {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas con el mismo ancho */
+  gap: 1rem;
+ 
+}
+
+@media only screen and (max-width: 900px) {
+
+  .modal {
+    width: 90%;
   }
-  
-  .boton:hover {
-    /* background: rgb(211, 175, 147); Cambia el color en hover */
-    /* background: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%); */
-    background: rgb(2,0,36);
-    background: rgb(230,138,18);
-background: linear-gradient(90deg, rgba(230,138,18,1) 0%, rgb(239, 193, 132) 30%, rgba(255,250,66,1) 100%);
-  }
-  
-  .boton:active {
-    transform: translateY(2px); /* Efecto de hundimiento en click */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra ligera en click */
-  }
-  /* @keyframes expand {
-    from {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-  .window{
-    animation: expand 0.5s 0.5s ease-in-out;
-  } */
-  /* @keyframes expand {
-    from {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-  
-  .window {
-    animation: expand 0.8s ease-in-out;
-    opacity: 0;
-    
-    &.visible {
-      opacity: 1;
-    }
-  } */
+}
+
+.modal::-webkit-scrollbar {
+  width: 10px;
+  /* Ancho de la barra de desplazamiento */
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background-color: #B18454;
+  /* Color del pulgar */
+  border-radius: 5px;
+  /* Borde redondeado */
+  height: 20px;
+
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(177, 132, 84, 0.5);
+  /* Cambia el color al pasar el mouse sobre la barra */
+}
+
+
+
+.barraLateral {
+  grid-column-start: 1;
+  background-color: #B18454;
+  height: 100%;
+
+
+}
+
+.content {
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  margin-left: 2em;
+  margin-top: 3em;
+  width: 100%;
+
+}
+
+.titulo {
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #B18454;
+  letter-spacing: 2px;
+  font-size: 2.5em;
+}
+
+.cancelButton {
+  align-self: flex-end;
+  margin-right: 0.5em;
+}
+
+.bigDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 80%;
+}
+
+.divInput {
+  height: 6.5em;
+  display: grid;
+  grid-template-rows: 30% 40% 30%;
+}
+
+.labelInput {
+  justify-self: left;
+  grid-row-start: 1;
+  font-family: sans-serif;
+  letter-spacing: 1.5px;
+  color: #B18454;
+  font-size: 1.2em;
+
+
+}
+
+.theInputs {
+  grid-row-start: 2;
+  background-color: rgb(177, 132, 84, 0.5);
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  padding-left: 1em;
+  font-family: sans-serif;
+  letter-spacing: 1.5px;
+  color: white;
+}
+
+
+
+.errorMessage {
+  grid-row-start: 3;
+  justify-self: left;
+  font-weight: bold;
+  color: red;
+}

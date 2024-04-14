@@ -10,24 +10,26 @@ import bcrypt from 'bcrypt'
 
 const verifyUsAttributes = async (req, res, next) => {
     const {email1, email2}=getEmails();
-    console.log('em1', email1)
-    console.log('em2', email2)
+    
     const id = req.params.id;
-    const { email, password, role } = req.body;
+    const { email, password, role, enable } = req.body;
     try {
       const user1 = await getUserIdByEmail(email1);
       const user2 = await getUserIdByEmail(email2);
       if(id === user1.id || id === user2.id){
         const userSel = (user1.id===id)?user1 : user2
-        const hashedPass = await bcrypt.compare(password, userSel.password)
-        if(!hashedPass){return res.status(403).json({error: 'Accion no permitida'})}
-        if(userSel.email !== email ){
+        if(password){const hashedPass = await bcrypt.compare(password, userSel.password)
+            if(!hashedPass){return res.status(403).json({error: 'Accion no permitida'})}}
+        else if(userSel.email !== email ){
           console.log('los emails no son iguales')
           return res.status(403).json({ error: ' Acción no permitida.' })
         }else if(role !== userSel.role){
           console.log('los roles no son iguales')
           return res.status(403).json({ error: ' Acción no permitida.' })
-        }
+        }else if(enable !== userSel.enable){
+          console.log('enable no puede cambiarse')
+          return res.status(403).json({ error: ' Acción no permitida.' })
+        }else{ return res.status(403).json({ error: 'Accion cruzada no permitida'})}
       }
       return next();
     } catch (error) {

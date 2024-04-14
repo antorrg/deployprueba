@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import style from '../styles/Modal.module.css'
+import styleButton from '../../GenericButton/EspecialButton.module.css'
 import FormEdit from './FormEdit';
 import axios from 'axios'
 import {useAuth} from '../AuthContext/AuthContext'
@@ -72,7 +73,30 @@ const EditWindow = ({ onClose, userEdit}) => {
       onResetPass()
     }
   };
-  
+
+  const deleteUser = async () => {
+    const confirmed = await showConfirmationDialog(`¿Está seguro de borrar este usuario? \n Esta accion no podrá deshacerse`);
+    if (confirmed) {
+      onDeleteUser()
+    }
+  };
+  const onDeleteUser = async()=>{
+    try {
+      const response = await axios.delete(`/user/${id}`, setAuthHeader());
+      if (response.status === 200) {
+        showSuccess('Usuario eliminado con exito')
+       onClose(); // Cierra el modal después de guardar los cambios
+      } else if (response.status ===400){
+        showError('Error al eliminar el usuario')
+      }
+    } catch (error) {
+      if (error.response) {// Si hay una respuesta del servidor, muestra el mensaje de error correspondiente
+        HandlError(error);
+      } else {// Si no hay respuesta del servidor, muestra un mensaje de error genérico
+        showError('Error al eliminar el usuario');
+      }
+    }
+   }
 
  const onResetPass = async()=>{
   try {
@@ -95,11 +119,14 @@ const EditWindow = ({ onClose, userEdit}) => {
  
   return (
     <div className={style.modal}>
-      <h2>Editar Usuario</h2>
-      <FormEdit id = {id} editedUser={editedUser} onInputChange={handleInputChange} onSaveChanges={handleSaveChanges} onClose={onClose} logout={logout}/>
-      <GenericButton onClick= {onClose} buttonText='Cancelar'/>
+      <div className={style.divButtons}>
+      <GenericButton  onClick= {onClose} buttonText='Cancelar'/>
       {authenticated && user.role===0? (
-      <GenericButton onClick= {resetPassword} buttonText='Reset Password'/>) : null}
+        <><GenericButton  onClick= {resetPassword} buttonText='Reset Password'/>
+        <GenericButton  onClick = {deleteUser} buttonText={'Borrar Usuario'}/></>) : null}
+        </div>
+        {/* <h2 >Editar Usuario</h2> */}
+        <FormEdit id = {id} editedUser={editedUser} onInputChange={handleInputChange} onSaveChanges={handleSaveChanges} onClose={onClose} logout={logout}/>
     </div>
   );
 };

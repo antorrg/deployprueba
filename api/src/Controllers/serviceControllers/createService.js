@@ -8,7 +8,6 @@ const createService = async ( type, detail, date_in, date_out, observations, pic
         if (!carFound) {
             throw new Error('Automóvil no encontrado');
         }
-
         // Verificar si ya existe un servicio para las fechas especificadas
         const existingService = await Service.findOne({
             where: {
@@ -47,51 +46,8 @@ const createService = async ( type, detail, date_in, date_out, observations, pic
 
 
 
-const updateService = async(id, newData)=>{
-    try {
-        if(!id){
-            throw new Error('No se encontró un id valido')
-        }
-        const user = await User.findByPk(id);
-    
-        if (!user) {
-          throw new Error("Usuario no encontrado");
-        }
-        if(!newData.password){
-          const parsedData = {
-            email:newData.email,
-            name: newData.name,
-            picture: newData.picture,
-            typeId: newData.typeId,
-            numberId:newData.numberId,
-            role: parseFloat(newData.role), //convertir a numero
-            country: newData.country,
-            enable: Boolean(newData.enable), // Convertir a booleano
-          };
-          // Actualizar todos los campos
-          const userUp =await user.update(parsedData);
-          return userUp;
-        }else{
-            const hashedPassword = await bcrypt.hash(newData.password, 10);
-            const parsedData = {
-              password:hashedPassword,
-             };
-         const userUp= await user.update(parsedData); 
-         return userUp;
-        }
 
-      } catch (error) {
-        console.error("Error al actualizar el usuario");
-       throw error;
-      }
-}
 
-const deleteService= async (id)=>{
-    console.log('Todavia no estoy lista (deberia borrar)')
-}
 
-export {
-    createService,
-    updateService,
-    deleteService
-}
+
+export default createService

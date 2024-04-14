@@ -1,17 +1,21 @@
 import { useState } from 'react';
-import style from '../styles/ModalEdit.module.css'
-import FormEdit from './FormEditCar';
+import style from './styles/Modal.module.css'
+import FormEditCar from './FormEditCar';
+import ChangeUser from './ChangeUser';
+import deleteCar from './DeleteCar'
 import axios from 'axios'
-import GenericButton from '../Buttons/GenericButton';
-import {showError, showSuccess,HandlError}from '../../Auth/HandlerError';
+import GenericButton from '../../../GenericButton/GenericButton';
+import {showError, showSuccess,HandlError}from '../../../Auth/HandlerError';
+import showConfirmationDialog from '../../../utils/sweetAlert'
 import setAuthHeader from '../../../Auth/axiosUtils'
+import Edition from '../../AdminHelpers/Edition/Edition'
 
 
-const ModalEditCar = ({ onClose, userEdit}) => {
-  const {patente, mark, model, year, motorNum, chassisNum, observations,picture, enable, deletedAt,idUser}= userEdit;
- 
+const ModalEditCar = ({ onClose, carEdit}) => {
+  const {id, patent, mark, model, year, motorNum, chassisNum, observations,picture, enable, deletedAt,idUser}= carEdit;
+ const [changeOwner, setChangeOwner]= useState(false)
   const [editedCar, setEditedCar] = useState({
-    patente,
+    patent,
     mark,
     model,
     year,
@@ -33,7 +37,7 @@ const ModalEditCar = ({ onClose, userEdit}) => {
       [name]: processedValue,
     }));
   };
-
+  
   const handleSaveChanges = async () => {
   
     //Lógica para guardar los cambios
@@ -55,14 +59,36 @@ const ModalEditCar = ({ onClose, userEdit}) => {
     
     }
   };
-  
- 
+  const delCarHandle = async() => {
+      const confirmed = await showConfirmationDialog(`¿Está seguro de eliminar el vehiculo? \n Esta accion no podrá deshacerse`);
+      if (confirmed) {
+          // Si el usuario hace clic en "Aceptar", ejecutar la funcion:
+          deleteCar(id, onClose)
+      }
+    };
 
+
+ const ownerChange = () => {
+  setChangeOwner(true) 
+ }
+ const notOwnerChange = () => {
+  setChangeOwner(false) 
+ }
+ 
   return (
     <div className={style.modal}>
-      <h2>Editar Vehiculo</h2>
-      <FormEditCar id = {id} editedUser={editedUser} onInputChange={handleInputChange} onSaveChanges={handleSaveChanges} />
+      <div className={style.divButtons}>
       <GenericButton onClick= {onClose} buttonText='Cancelar'/>
+      {changeOwner? 
+      <GenericButton onClick= {notOwnerChange} buttonText='Editar Vehiculo'/>:
+      <><Edition allowedRoles={[0]} onClick={ownerChange} text={'Cambiar Propietario'}/>
+      <Edition allowedRoles={[0]} onClick={delCarHandle} text={'Eliminar Vehiculo'}/></>
+      }
+      </div>
+      {changeOwner? 
+      <ChangeUser carEdit={id} onClose={onClose}/> :
+      <FormEditCar id = {id} editedCar={editedCar} onInputChange={handleInputChange} onSaveChanges={handleSaveChanges} />
+        }
     </div>
   );
 };

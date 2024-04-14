@@ -1,56 +1,43 @@
 
-const ValidCar = (input) => {
+const ValidServCreate = (input) => {
   let errors = {};
 
-  // Validaciones para el campo de la patente
-  if (!input.patent.trim()) {
-    errors.patent = "Este campo no puede estar vacio";
+  if (!input.type.trim()) {
+    errors.type = "Este campo no puede estar vacio";
   } 
-   else if (input.patent.length >= 8) {
-    errors.patent = "La patente es demasiado larga";
+  // Validaciones para el campo del detalle
+  else if (!input.detail.trim()) {
+    errors.detail = "Este campo no puede estar vacio";
+  } 
+   else if (input.detail.length >= 100) {
+    errors.detail = "El detalle es demasiado largo";
   }
-
-  // Validaciones para el campo de la marca
- else if (!input.mark.trim()) {
-    errors.mark = "Este campo no puede estar vacio";
-  }  else if (input.mark.length < 3) {
-    errors.password = "La marca debe tener al menos 3 caracters";
+  //Validaciones para el campo de la fecha de entrada:
+   else if (!input.date_in.trim()) {
+    errors.date_in = "Este campo no puede estar vacío";
+  } else {
+    // Validar si la fecha de entrada es válida utilizando el objeto Date
+    const dateIn = new Date(input.date_in);
+    if (isNaN(dateIn.getTime())) {
+      errors.date_in = "Formato de fecha inválido";
+    }
   }
-    // Validaciones para el campo del modelo
-   else if (!input.model.trim()) {
-        errors.model = "Este campo no puede estar vacio";
-      }  else if (input.model.length < 2) {
-        errors.model = "El modelo debe tener al menos 2 caracteres";
-      }
-    // Validaciones para el campo del año
-   else if (!input.year.trim()) {
-        errors.year = "Este campo no puede estar vacio";
-      }  else if (input.year.length < 4) {
-        errors.year = "El año debe tener al menos 4 caracteres";
-      }else if (input.year.length > 4){
-      errors.year = "El año debe tener no mas de 4 caracters";
-      }
-      // Validaciones para el campo del numero de motor
-   else if (!input.motorNum.trim()) {
-        errors.motorNum = "Este campo no puede estar vacio";
-      }  else if (input.motorNum.length < 4) {
-        errors.motorNum = "El numero de motor debe tener al menos 4 caracteres";
-      }
-      // Validaciones para el campo del numero de chasis
-   else if (!input.chassisNum.trim()) {
-        errors.chassisNum = "Este campo no puede estar vacio";
-      }  else if (input.chassisNum.length < 4) {
-        errors.chassisNum = "El numero de chasis debe tener al menos 4 caracteres";
+    //Validaciones para el campo de la fecha de Salida:
+    
+      // Validar si la fecha de entrada es válida utilizando el objeto Date
+      const dateIn = new Date(input.date_in);
+      if (isNaN(dateIn.getTime())) {
+        errors.date_in = "Formato de fecha inválido";
       }
       // Validaciones para el campo de observaciones
-    else if (!input.observations.trim()) {
+    if (!input.observations.trim()) {
         errors.observations = "Este campo no puede estar vacio";
-      }  else if (input.observations.length < 40) {
-        errors.observations = "Este campo debe tener al menos 40 caracteres";
+      }  else if (input.observations.length < 5) {
+        errors.observations = "Este campo debe tener al menos 5 caracteres";
       }else if (input.observations.length > 500){
       errors.observations = "Este campo no debe tener mas de 500 caracters";
       }
   return errors;
 };
 
-export default ValidCar;
+export default ValidServCreate;

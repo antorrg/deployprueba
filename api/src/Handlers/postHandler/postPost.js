@@ -1,5 +1,6 @@
 import Category from "../../Models/Category.js";
 import { Post, CategoryPost } from "../../db.js";
+import createPost from "../../Controllers/commerceControllers/createPostController.js";
 
 const postPost = async (req, res) => {
   //datePost usamos la fecha actual
@@ -35,16 +36,17 @@ const postPost = async (req, res) => {
     }
 
     //! Crear el post (ver las imagenes a guardar)
-    const createdPost = await Post.create({
-      datePost: new Date(),
-      titlePost,
-      textPost,
-      imgPost: imgPost ?? [],
-      published: published ?? false,
-      viewFavPost: viewFavPost ?? false,
-      other: other ?? "",
-      idCategory,
-    });
+    const createdPost = await createPost(titlePost, textPost, published, viewFavPost, imgPost, datePost, idCategory, other)
+    // Post.create({
+    //   datePost: new Date(),
+    //   titlePost,
+    //   textPost,
+    //   imgPost: imgPost ?? [],
+    //   published: published ?? false,
+    //   viewFavPost: viewFavPost ?? false,
+    //   other: other ?? "",
+    //   idCategory,
+    // });
     //devolvemos SOLO el Post creado, para reordenarlos usar método GET correspondiente
     //const data = await Post.findAll();
     res.status(201).json(createdPost);

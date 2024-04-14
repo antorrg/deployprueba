@@ -1,6 +1,8 @@
 import { HandlError } from "../components/Auth/HandlerError";
 import axios from "axios";
 import setAuthHeader from "../components/Auth/axiosUtils";
+import Swal from "sweetalert2";
+
 export const LOGIN_USER = "LOGIN_USER";
 export const ISN_AUTH = "ISN_AUTH";
 export const ALL_USERS = "ALL_USERS";
@@ -10,11 +12,14 @@ export const CLEAN_DETAILS = "CLEAN_DETAILS";
 export const ALL_CARS = "ALL_CARS";
 export const CAR_PAT = "CAR_PAT";
 export const CAR_BY_ID = "CAR_BY_ID";
-export const ALL_SERVICES= 'ALL_SERVICES';
-export const SERV_BY_CAR = 'SERV_BY_CAR';
-export const SERV_BY_ID = 'SERV_BY_ID';
+export const ALL_SERVICES = "ALL_SERVICES";
+export const SERV_BY_CAR = "SERV_BY_CAR";
+export const SERV_BY_ID = "SERV_BY_ID";
 export const ISMYCOMMERCE = "ISMYCOMMERCE";
 export const POST_FAVORITES = "POSTFAV";
+export const GET_ALL_TIPS = "GET_ALL_TIPS";
+export const ALL_PROVINCES = "ALL_PROVINCES";
+export const UPDATE_COMMERCE = "UPDATE_COMMERCE";
 
 //?%%%%%%%%%%% commerce %%%%%%%%%%%%%%%%%%%%%%%%%%
 export const isMyCommerce = () => {
@@ -47,11 +52,57 @@ export const isMyCommerce = () => {
         type: ISMYCOMMERCE,
         payload: dataError,
       });
-      
+    }
+  };
+};
+
+export const updateCommerce = (idCommerce, updateData) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.patch("/Commerce/" + idCommerce, updateData);
+      if (data) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Datos actualizados",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+      return dispatch({
+        type: UPDATE_COMMERCE,
+        payload: data,
+      });
+    } catch (error) {
+      console.error("Error al actualizar Commerce (action updateCommerce)");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No pudimos actualizar el Comercio",
+        //footer: '<a href="#">Why do I have this issue?</a>',
+      });
     }
   };
 };
 //?%%%%%%%%%%% commerce end %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+//!%%%%%%%%%%% provinces  %%%%%%%%%%%%%%%%%%%%%%%%%%
+export const getProvinces = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios("/province");
+      return dispatch({ type: ALL_PROVINCES, payload: data });
+    } catch (error) {
+      console.error("Error al obtener las provincias (action getProvinces)");
+      return dispatch({
+        type: ALL_PROVINCES,
+        payload: [{ idProvince: 0, descProvince: "Reload Please" }],
+      });
+    }
+  };
+};
+
+//!%%%%%%%%%%% provinces end %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 //%%%%%%%%%%% post/tips/consejos %%%%%%%%%%%%%%%%%%%%%%%%%%
 export const postFav = () => {
@@ -164,7 +215,6 @@ export const carByPat = (patent) => async (dispatch) => {
   }
 };
 
-
 export const getAllServices = () => {
   return async (dispatch) => {
     try {
@@ -191,15 +241,31 @@ export const getMyServices = (carId) => {
     }
   };
 };
-export const servicesById = (id)=>async(dispatch)=>{
+export const servicesById = (id) => async (dispatch) => {
+  try {
+    const myServ = await axios(`/service/${id}`);
+    const data = myServ.data;
+    return dispatch({
+      type: SERV_BY_ID,
+      payload: data,
+    });
+  } catch (error) {
+    HandlError(error);
+  }
+};
+
+/////get post
+
+export const getAllTips = () => {
+  return async (dispatch) => {
     try {
-      const myServ = await axios(`/service/${id}`)
-      const data = myServ.data;
+      const data = await axios("/postpublish");
       return dispatch({
-        type:SERV_BY_ID,
-        payload:data,
+        type: GET_ALL_TIPS,
+        payload: data.data,
       });
     } catch (error) {
       HandlError(error);
     }
-}
+  };
+};

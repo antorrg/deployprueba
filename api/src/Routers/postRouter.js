@@ -26,9 +26,9 @@ postRouter.patch("/categorypost/:idCategoryPost", updateCategoryPost); //actuali
 postRouter.get("/allpostorderfecha", getPostAllOrderFecha); // todos los Post ordenados por fecha. Recibe por query el orden ASC o DESC http://localhost:3001/allpostorderfecha?order=ASC
 postRouter.get("/allpostordertitle", getPostAllOrderTitle); // todos los Post ordenados por title. Recibe por query el orden ASC o DESC http://localhost:3001/allpostordertitle?order=ASC
 postRouter.get("/postfav", getPostFav); //puede recibir query http://localhost:3001/postfav?total=1
-postRouter.get("/post/:id", getPostByidPost); //devuelve un post según idPost
+postRouter.get("/post/:idPost", getPostByidPost); //devuelve un post según idPost
 postRouter.get("/postpublish", getPostPublish); //devuelve los post publicados o no de acuerdo a lo que se pide por query http://localhost:3001/postpublish?value=true&columnorder=datePost&order=DESC (ver detalles en elhandler)
-postRouter.get("/post/:idCategory", getPostByCategory); //devuelve los post por categoría de acuerdo a lo que se pide por query http://localhost:3001/postbycategory/1?columnorder=datePost&order=DESC (ver detalles en elhandler)
+postRouter.get("/postbycategory/:idCategory", getPostByCategory); //devuelve los post por categoría de acuerdo a lo que se pide por query http://localhost:3001/postbycategory/1?columnorder=datePost&order=DESC (ver detalles en elhandler)
 postRouter.post("/post", postPost); //crear un post/tips
 postRouter.delete("/post/:id", deletePost); //eliminar un post por idPost
 postRouter.patch("/post/:id", updatePost); //actualiza datos de un Post, según idPost. Enviar todo lo demás que se tenga que modificar por body, por ejemplo {titlePost: "Nuevo título", idCategory: 2}

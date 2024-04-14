@@ -41,6 +41,7 @@ const FormEdit = ({ id, editedUser, onInputChange, onSaveChanges, onClose, logou
 
   return (
     <div className={style.formContainer}>
+       <h3 >Editar Usuario</h3>
         <label>
           {imageUrl && <img style={{maxWidth:'120px'}} src={imageUrl} alt="Current User" />}
         </label>

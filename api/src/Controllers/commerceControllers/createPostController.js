@@ -15,12 +15,12 @@ const createPost = async(titlePost, textPost, published, viewFavPost, imgPost, i
         })
         if(postFound){throw new Error('This post already exists')};
         const newPost = await Post.create({
+            datePost : new Date(),
             titlePost:titlePost,
             textPost: textPost,
-            published: published,
-            viewFavPost: viewFavPost,
-            imgPost: imgPost,
-            datePost : new Date(),
+            imgPost: imgPost ?? [],
+            published: published ?? false,
+            viewFavPost: viewFavPost ?? false,
         }, {transaction})
         await categPost.addPost(newPost,{transaction})
         await transaction.commit();

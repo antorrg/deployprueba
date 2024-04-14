@@ -92,7 +92,7 @@ const getUserIdByEmail = async (email) => {
       where: {
         email: email
       },
-      attributes: ['id', 'email', 'password', 'role']
+      attributes: ['id', 'email', 'password', 'role', 'enable']
     });
     return user;
   } catch (error) {

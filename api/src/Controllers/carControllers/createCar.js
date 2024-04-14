@@ -1,5 +1,4 @@
 import { User, Car , sequelize} from "../../db.js";
-import { Transaction } from 'sequelize';
 
 //* Esta función crea un vehiculo y lo relaciona con el usuario:
 
@@ -67,39 +66,6 @@ import { Transaction } from 'sequelize';
   }
 }
 
-//*======= Actualizar vehiculo ==================
-const updateCar = async (id, newData) => {
-  try {
-    if (!id) {
-      throw new Error("No se encontró un id valido");
-    }
-    const car = await Car.findByPk(id);
 
-    if (!car) {
-      throw new Error("Vehiculo no encontrado");
-    }
-    const parsedData = {
-      patent: newData.patent,
-      mark: newData.mark,
-      model: newData.model,
-      year: newData.year, //Date.parse(newData.year) este no va
-      motorNum: newData.motorNum,
-      chassisNum: newData.chassisNum, 
-      observations: newData.observations,
-      picture:newData.picture,
-      enable: Boolean(newData.enable) // Convertir a booleano
-    };
-    // Actualizar todos los campos
-    const userUp = await user.update(parsedData);
-    return userUp;
-  } catch (error) {
-    console.error("Error al actualizar el vehiculo");
-    throw error;
-  }
-};
-//*===============Borrar usuario ==============
-const deleteCar = async (id) => {
-  console.log("Todavia no estoy lista (deberia borrar)");
-};
 
-export { createCar, updateCar, deleteCar };
+export default createCar

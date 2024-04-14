@@ -114,7 +114,14 @@ const updateUser = async (id, newData) => {
 };
 
 const deleteUser = async (id) => {
-  console.log("Todavia no estoy lista (deberia borrar)");
+ try {
+   const userD = await User.findByPk(id);
+   if(!userD){throw new Error('Usuario no encontrado')};
+   userD.update({deletedAt: true});
+   return userD;
+ } catch (error) {
+  throw error;
+ }
 };
 
 export { getUsers, userByQuery, userById, updateUser, deleteUser };

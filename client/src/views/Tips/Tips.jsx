@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from './Tips.module.css'
 import datosPrueba from './DatosPrueba'
 import Cards from '../../components/cards/Cards';
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllTips } from '../../redux/actions';
 
 function Tips() {
+    const dispatch = useDispatch()
+    const allTips = useSelector((state) => state.allTips)
+    useEffect(() => {
+        if (allTips.length === 0) {
+            dispatch(getAllTips())
+        }
+    }, [])
+    console.log(allTips);
     const datosDePrueba = datosPrueba()
-    console.log(datosDePrueba);
     return (
         <div className={style.mainDiv}>
             <div className={style.divHeaderImg}>
@@ -24,7 +33,7 @@ function Tips() {
             </div>
 
             <div className={style.divCard}>
-                <Cards info={datosDePrueba} />
+                <Cards info={allTips} />
             </div>
 
         </div>

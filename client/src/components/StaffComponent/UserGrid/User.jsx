@@ -16,7 +16,7 @@ const User = ({data}) => {
   return (
     <div className={style.cardContainer}>
     <p>Nombre: {name}</p>
-    <Link to= {`/admin/dett/${id}?type=user`}>Ver mas:</Link>
+    <Link to= {`/admin/dett/${id}?type=user`}>Ver Usuario:</Link>
     <p>Email: {email}</p>
     <p>Estado: {usuario(enable)}</p>
     <div>

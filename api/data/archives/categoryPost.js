@@ -1,7 +1,9 @@
 const categoryPost = [
     { descCategory: "Aceites" },
-    { descCategory: "Sevice periódico" },
+    { descCategory: "Service periódico" },
     { descCategory: "Refrigerantes" },
+    { descCategory: "Cubiertas" },
+
 
 ];
 

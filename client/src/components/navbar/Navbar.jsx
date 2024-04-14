@@ -16,13 +16,7 @@ const Navbar = () => {
 
   const handleClick = () => {
     logout();
-
-
   }
-
-
-
-
 
 
   return (
@@ -38,27 +32,12 @@ const Navbar = () => {
         <NavLink to='/' activeClass="active"  smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}><h3 className={style.linksH3}>Home</h3> </NavLink>
         </> :
         <> <Link to="pagina" activeClass="active"  smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}><h3 className={style.linksH3}>Home</h3> </Link>
-
         <Link to="historia" activeClass="active"  smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}> <h3 className={style.linksH3}>Historia</h3> </Link>
-
-
         <Link to="servicios" activeClass="active"  smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}>   <h3 className={style.linksH3}>Servicios</h3> </Link>
-
-
         <Link to="consejos" activeClass="active" smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}>   <h3 className={style.linksH3}>Tips</h3> </Link>
-
         <Link to="contacto" activeClass="active"  smooth={true} duration={600} offset={-70} >  <h3 className={style.linksH3}>Contacto</h3> </Link> 
          </>}
-        {/* <LoginLinks />
-        <AdminLink /> */}
-
-
-
-
-        {/* <Link to='/login'>
-          <h4 className={style.botones}>Ingresar</h4>
-        </Link> */}
-
+       
       </div>
 
       <div className={style.userData}>
@@ -88,8 +67,6 @@ const Navbar = () => {
         </div>
       </div>
 
-
-
       <button className={`navbar-toggler ${style.userDetails}`} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
         <span class={style.togglerIcon}>&#9776;</span>
       </button>
@@ -105,36 +82,6 @@ const Navbar = () => {
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
 
-
-{/* 
-            {authenticated ? null : (
-
-              <>
-                <li class="nav-item">
-                  <Link to="pagina" data-bs-dismiss="offcanvas" activeClass="active" spy={true} smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}><h3 className={style.linksH3}>Home</h3> </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="historia" data-bs-dismiss="offcanvas" activeClass="active" spy={true} smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}> <h3 className={style.linksH3}>Historia</h3> </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="servicios" data-bs-dismiss="offcanvas" activeClass="active" spy={true} smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}>   <h3 className={style.linksH3}>Servicios</h3> </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="consejos" data-bs-dismiss="offcanvas" activeClass="active" spy={true} smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}>   <h3 className={style.linksH3}>Tips</h3> </Link>
-                </li>
-                <li class="nav-item">
-                  <Link to="contacto" data-bs-dismiss="offcanvas" activeClass="active" spy={true} smooth={true} duration={600} offset={-70} >  <h3 className={style.linksH3}>Contacto</h3> </Link>
-                </li>
-                <hr></hr>
-              </>
-            )
-            } */}
-
-
-
-
-
-
             <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
               {
                 authenticated ? (`Bienvenido ${user.nickname}`) : null}
@@ -145,7 +92,6 @@ const Navbar = () => {
                 <img className={style.pictureDeployMenu} src={user.picture} alt="Not Found" />
               }
             </li>
-
             {authenticated ? (
               <>
                 <br></br>
@@ -160,45 +106,22 @@ const Navbar = () => {
                 </li>
               </>
             )}
-
             <li class="nav-item" data-bs-dismiss="offcanvas">
               <LoginLinks />
-
-
             </li>
             <li class="nav-item" data-bs-dismiss="offcanvas">
               <AdminLink />
-
             </li>
-
             <br></br>
             <li class="nav-item" data-bs-dismiss="offcanvas">
               {
-                authenticated &&
+                authenticated?
                 <a className={style.out} href='/' onClick={handleClick}>Salir</a>
-              }
+              :null}
             </li>
           </ul>
         </div>
       </div>
-
-
-
-      {/* {
-        authenticated ? <>
-          <div className={style.userDetails}>
-            <h4>Bienvenido: {user.nickname && user.nickname}</h4>
-
-
-
-
-            <img src={user.picture} alt="Not Found" />
-            <a className={style.out} href='/' onClick={handleClick}>Salir</a>
-          </div>
-        </> : null
-      } */}
-
-
     </div>
   )
 }

@@ -38,30 +38,7 @@ const postCar = async(carData)=>{
     throw error;
   }
 }
-const postService = async(serviceData)=>{
-    const email = userData.email;
-    const password = userData.password;
-    try {
-        const response = await axios.post(`/user/login`,{
-            email,
-            password,
-        }, setAuthHeader());
-        if (response.status === 201) {
-          const service = response.data.data;
-        showSuccess('Servicio creado exitosamente')   
-        return service;
-        }
-       
-        } catch (error) {
-          showError('Creación de servicio fallida')
-          //HandlError(error);
-          throw error;
-        }    
-  }
 
 
-export {
-    postCar,
-    postService
-}
 
+export default postCar

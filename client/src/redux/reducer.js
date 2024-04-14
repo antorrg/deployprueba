@@ -13,6 +13,9 @@ import {
   SERV_BY_ID,
   ISMYCOMMERCE,
   POST_FAVORITES,
+  GET_ALL_TIPS,
+  ALL_PROVINCES,
+  UPDATE_COMMERCE,
 } from "./actions";
 
 const initialState = {
@@ -27,10 +30,12 @@ const initialState = {
   carById: [],
   cars: [],
   services: [],
-  servByCar:[],
-  servById:[],
+  servByCar: [],
+  servById: [],
   myCommerce: undefined,
   postFav: null,
+  allTips: [],
+  allProvinces: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -90,18 +95,18 @@ const reducer = (state = initialState, { type, payload }) => {
     case ALL_SERVICES:
       return {
         ...state,
-        services:payload,
-      }
-      case SERV_BY_CAR:
-        return {
-          ...state,
-          servByCar: payload
-        }
-      case SERV_BY_ID:
-        return {
-          ...state,
-          servById: payload,
-        }
+        services: payload,
+      };
+    case SERV_BY_CAR:
+      return {
+        ...state,
+        servByCar: payload,
+      };
+    case SERV_BY_ID:
+      return {
+        ...state,
+        servById: payload,
+      };
     //? %%%%%%%% commerce %%%%%%%%%%%%%%%%%%%%%%%%
     case ISMYCOMMERCE:
       return {
@@ -115,6 +120,15 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         postFav: payload,
       };
+
+    //%%%%%%%%%% GET tips
+    case GET_ALL_TIPS:
+      return {
+        ...state,
+        allTips: payload,
+      };
+    case ALL_PROVINCES:
+      return { ...state, allProvinces: payload };
     default:
       return {
         ...state,
