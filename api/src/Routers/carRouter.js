@@ -9,6 +9,6 @@ carRouter.get('/car/:id', verifyToken, getCarByIdHand);
 carRouter.post('/car', verifyToken, checkRole([0,2]), createCarHand);
 carRouter.put('/car/:id', verifyToken, checkRole([0,2]), updateCarHand);
 carRouter.patch('/car/:id',   verifyToken, checkRole([0]),updDomCarHand);
-carRouter.delete('/car/:id', verifyToken, checkRole([0,2]), delCarHand);
+carRouter.delete('/car/:id', verifyToken, checkRole([0]), delCarHand);
 
 export default carRouter;
