@@ -13,7 +13,7 @@ const mainRouter = Router();
 
 mainRouter.use(userRouter);
 mainRouter.use(carRouter);
-mainRouter.use(serviceRouter)
+mainRouter.use(serviceRouter);
 mainRouter.use(categoryRouter);
 mainRouter.use(postRouter);
 mainRouter.use(provinceRouter);
