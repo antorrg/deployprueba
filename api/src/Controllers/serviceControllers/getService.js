@@ -1,4 +1,4 @@
-import {Service} from '../../db.js'
+import {Service} from '../../db.js';
 import {emptyResServ} from '../../Utils/emptyRes.js';
 
 const getService = async () => {
@@ -54,4 +54,4 @@ export{
     getService,
     getServiceByQuery,
     serviceById
-}
+};

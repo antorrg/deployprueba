@@ -1,4 +1,4 @@
-import {Router} from 'express'
+import {Router} from 'express';
 import { createServiceHand, getServiceHand, getServiceIdHand, updateServiceHand, delServiceHand} from '../Handlers/serviceHandlers/serviceHand.js'
 
 const serviceRouter = Router();

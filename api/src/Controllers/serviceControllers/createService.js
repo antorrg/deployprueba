@@ -50,4 +50,4 @@ const createService = async ( type, detail, date_in, date_out, observations, pic
 
 
 
-export default createService
+export default createService;

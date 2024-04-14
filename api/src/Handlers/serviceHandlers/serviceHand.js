@@ -8,7 +8,7 @@ const createServiceHand = async (req, res)=>{
     } catch (error) {
         res.status(400).json({error: error.message})
     }
-}
+};
 //=====================================================
 
 const getServiceHand = async (req, res)=>{
@@ -24,7 +24,7 @@ const getServiceHand = async (req, res)=>{
     } catch (error) {
         res.status(400).json({error: error.message})
     }
-}
+};
 
 //================================================================
 
@@ -37,7 +37,7 @@ const getServiceIdHand = async (req, res)=>{
     } catch (error) {
         res.status(400).json({error: error.message})
     }
-}
+};
 
 //=====================================================================
 
@@ -50,7 +50,7 @@ const updateServiceHand = async (req, res)=>{
     } catch (error) {
         res.status(400).json({error: error.message})
     }
-}
+};
 
 //==============================================================
 
@@ -62,7 +62,7 @@ const delServiceHand = async (req, res)=>{
     } catch (error) {
         res.status(400).json({error: error.message})
     }
-}
+};
 
 
 export { 

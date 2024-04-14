@@ -3,7 +3,7 @@ import { Service } from "../../db.js";
 const updateService = async(id, newData)=>{
     try {
         if(!id){
-            throw new Error('No se encontró un id valido')
+            throw new Error('No se encontró un id valido');
         }
         const user = await Service.findByPk(id);
     
@@ -39,4 +39,4 @@ const updateService = async(id, newData)=>{
       }
 }
 
-export default updateService
+export default updateService;
