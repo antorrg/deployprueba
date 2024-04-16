@@ -1,4 +1,4 @@
-import style from "./styles/Car.module.css";
+import style from "../generalStyles/CarUserGrids/Component.module.css";
 import { infoSelect } from "../AdminHelpers/Helpers/InfoMap";
 import { Link } from "react-router-dom";
 

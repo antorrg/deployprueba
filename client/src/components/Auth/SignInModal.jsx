@@ -1,7 +1,6 @@
-
 import style from './styles/Modal.module.css'
 import SignInForm from './SignInForm';
-import GenericButton from '../GenericButton/GenericButton';
+
 
 
 const SignWindow = ({ onClose, openCreateCar }) => {

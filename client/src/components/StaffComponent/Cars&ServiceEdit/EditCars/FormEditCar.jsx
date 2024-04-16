@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios'
-import style from './styles/Form.module.css';
+import style from '../../generalStyles/ModalsForms/Forms.module.css';
 import GenericButton from '../../../GenericButton/GenericButton';
 import showConfirmationDialog from '../../../utils/sweetAlert'
 import ImgUpFire from '../../../ImgUpFire/ImgUpFire';

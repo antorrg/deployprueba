@@ -20,6 +20,10 @@ export const POST_FAVORITES = "POSTFAV";
 export const GET_ALL_TIPS = "GET_ALL_TIPS";
 export const ALL_PROVINCES = "ALL_PROVINCES";
 export const UPDATE_COMMERCE = "UPDATE_COMMERCE";
+export const ALL_CATEGORY_TIPS = "ALL_CATEGORY_TIPS";
+export const GET_ORDER_TIPS = "GET_ORDER_TIPS"; 
+export const STATE_FILTER_TIPS = "STATE_FILTER_TIPS";
+export const OPTION_FILTER = "OPTION_FILTER"
 
 //?%%%%%%%%%%% commerce %%%%%%%%%%%%%%%%%%%%%%%%%%
 export const isMyCommerce = () => {
@@ -115,6 +119,35 @@ export const postFav = () => {
       });
     } catch (error) {
       console.error("Error al obtener los post Favoritos");
+    }
+  };
+};
+
+export const updateTips = (idPost, updateData) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.patch("/post/" + idPost, updateData);
+      return dispatch({
+        type: "",
+        payload: "",
+      });
+    } catch (error) {
+      console.error("Error al actualizar el/los post Favoritos");
+      console.log(error);
+    }
+  };
+};
+
+export const getAllTipsFull = () => {
+  return async (dispatch) => {
+    try {
+      const data = await axios("/allpostordertitle?order=ASC");
+      return dispatch({
+        type: GET_ALL_TIPS,
+        payload: data.data,
+      });
+    } catch (error) {
+      HandlError(error);
     }
   };
 };
@@ -269,3 +302,61 @@ export const getAllTips = () => {
     }
   };
 };
+
+export const getAllCategoryTips = () => {
+  return async (dispatch) => {
+    try {
+      const data = await axios("/categorypost")
+      return dispatch({
+        type: ALL_CATEGORY_TIPS,
+        payload: data.data
+      })
+    } catch (error) {
+      HandlError(error);
+    }
+  }
+}
+
+export const getOrderTips = (cat, columnorder, order) => {
+  return async (dispatch) => {
+    try {
+    
+      const data = await axios(`/postOrder?cat=${cat}&columnorder=${columnorder}&order=${order}`);
+      return dispatch({
+        type: GET_ORDER_TIPS,
+        payload: data.data,
+      });
+    } catch (error) {
+      HandlError(error);
+    }
+  };
+};
+
+export const stateOrderTips = (cat, columnorder, order) => {
+  return async (dispatch) => {
+    try {
+      return dispatch({
+        type: STATE_FILTER_TIPS,
+        payload:{cat, columnorder, order}
+      })
+    } catch (error) {
+      
+    }
+  }
+}
+
+export const optionFiltered = (category, order) => {
+  return async (dispatch) => {
+    try {
+      return dispatch({
+        type: OPTION_FILTER,
+        payload:{category, order}
+
+      }
+        
+      )
+    } catch (error) {
+      
+    }
+  }
+}

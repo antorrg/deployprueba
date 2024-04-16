@@ -16,6 +16,10 @@ import {
   GET_ALL_TIPS,
   ALL_PROVINCES,
   UPDATE_COMMERCE,
+  ALL_CATEGORY_TIPS,
+  GET_ORDER_TIPS,
+  STATE_FILTER_TIPS,
+  OPTION_FILTER,
 } from "./actions";
 
 const initialState = {
@@ -36,6 +40,13 @@ const initialState = {
   postFav: null,
   allTips: [],
   allProvinces: [],
+  allCategoryTips: [],
+  variableFilter: {
+    cat: 0,
+    columnorder: "titlePost",
+    order:"ASC"
+  },
+  optionFilter:{category: "Todos", order:"nameAsc"}
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -133,6 +144,29 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
       };
+    
+    case ALL_CATEGORY_TIPS:
+      return {
+        ...state,
+        allCategoryTips:payload,
+      }
+    
+    case GET_ORDER_TIPS:
+      return {
+        ...state,
+        allTips:payload,
+      }
+    
+    case STATE_FILTER_TIPS:
+      return {
+        ...state, 
+        variableFilter: payload,
+      }
+    case OPTION_FILTER:
+      return {
+        ...state,
+        optionFilter:payload,
+      }
   }
 };
 

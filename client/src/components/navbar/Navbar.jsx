@@ -1,10 +1,8 @@
 import style from './Navbar.module.css'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { Link, animateScroll as scroll, } from 'react-scroll';
-import { useState } from 'react'
 import { useAuth } from '../Auth/AuthContext/AuthContext'
-import LoginLinks from './Links/LoginLinks'
-import AdminLink from './Links/AdminLink'
+import {AdminLink, LoginLinks, PanelAdmin} from './Links/Index'
 import ShowUser from './ShowUser/ShowUser'
 import logo from '../../assets/images/BoscarolHnos.png'
 import userLogo from '../../assets/images/user.png'
@@ -12,7 +10,12 @@ import userLogo from '../../assets/images/user.png'
 
 const Navbar = () => {
   const { authenticated, user, logout } = useAuth()
-  const location = useLocation()
+  const {pathname} = useLocation()
+
+  
+  const admin = (user?.role === 0)? true : false;
+  const noRoutes = (pathname.startsWith('/login') || pathname.startsWith('/error') || pathname.startsWith('/home') || pathname.startsWith('tips'))? false : true;
+
 
   const handleClick = () => {
     logout();
@@ -29,7 +32,10 @@ const Navbar = () => {
       <div className={style.login}>
         {authenticated && location.pathname!=='/' ?
         <>
-        <NavLink to='/' activeClass="active"  smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}><h3 className={style.linksH3}>Home</h3> </NavLink>
+        <NavLink to='/' ><h3 className={style.linksH3}>Home</h3> </NavLink>
+        {admin && noRoutes? <>
+        <PanelAdmin/>
+        </>: null}
         </> :
         <> <Link to="pagina" activeClass="active"  smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}><h3 className={style.linksH3}>Home</h3> </Link>
         <Link to="historia" activeClass="active"  smooth={true} duration={600} offset={-70} activeStyle={{ color: 'red' }}> <h3 className={style.linksH3}>Historia</h3> </Link>
@@ -39,6 +45,7 @@ const Navbar = () => {
          </>}
        
       </div>
+
 
       <div className={style.userData}>
 

@@ -12,11 +12,19 @@
     transform: translateZ(0);
     transition: transform 0.25s ease-out;
     z-index:1;
-    margin: 0.7rem; 
+    margin: 1rem; 
     text-decoration:none;
 }
 
 .cardContainer:hover {
     transform: scale(1.05);
     z-index:2;
+}
+
+@media (max-width: 768px) {
+    .cardList {
+        width: 80vw; /* Cambia el ancho a 100vw en dispositivos móviles */
+        margin-left: 0; /* Elimina el margen izquierdo */
+        margin-right: 0; /* Elimina el margen derecho */
+    }
 }

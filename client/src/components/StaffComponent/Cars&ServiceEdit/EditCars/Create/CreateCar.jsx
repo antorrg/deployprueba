@@ -1,4 +1,4 @@
-import style from '../styles/Form.module.css'
+import style from '../../../generalStyles/ModalsForms/Forms.module.css'
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import  ValidCar  from '../CarServValidate';
@@ -103,7 +103,6 @@ const CreateCar = () => {
 
   return (
     <div className={style.formContainer}>
-      <h3>Registrar vehiculo:</h3>
     <div >
           <ImgUpFire maxImages={1} uploadImgs={handleUploadImg}/>
            <label > Imagen: </label>

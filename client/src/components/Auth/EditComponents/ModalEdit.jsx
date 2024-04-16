@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import style from '../styles/Modal.module.css'
-import styleButton from '../../GenericButton/EspecialButton.module.css'
 import FormEdit from './FormEdit';
 import axios from 'axios'
 import {useAuth} from '../AuthContext/AuthContext'

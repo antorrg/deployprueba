@@ -1,4 +1,4 @@
-import style from './Carry.module.css'
+import style from '../generalStyles/ServicesComponents/Carry.module.css'
 import RowTable from './RowTable'
 
 const CarryTable = ({data}) => {

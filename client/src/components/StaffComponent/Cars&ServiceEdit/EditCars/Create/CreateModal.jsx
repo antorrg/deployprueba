@@ -1,16 +1,20 @@
-import style from '../styles/Modal.module.css'
+import style from '../../../generalStyles/ModalsForms/Modal.module.css'
 import CreateCar from './CreateCar';
 import GenericButton from '../../../../GenericButton/GenericButton';
 
 
 const CreateModal = ({closer}) => {
+  
  
- 
- 
+ const onClose =()=>{
+    closer();
+   
+ }
 
   return (
     <div className={style.modal}>
-      <GenericButton onClick={()=>{closer()}} buttonText={'Cancelar'} />
+      <h2>Registrar vehiculo:</h2>
+      <GenericButton onClick={onClose} buttonText={'Cancelar'} />
       <br/>
       <br/>
       <CreateCar/>

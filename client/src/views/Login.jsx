@@ -1,16 +1,14 @@
 import style from '../components/Auth/styles/Modal.module.css'
-import {useState, useEffect}from 'react'
+import {useState}from 'react'
 import {useNavigate} from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import {getAllUsers}from '../redux/actions'
 import {LoginForm,SignWindow} from '../components/Auth/AuthIndex';
 import {useAuth}from '../components/Auth/AuthContext/AuthContext'
-import  CreateModal from '../components/StaffComponent/Cars&ServiceEdit/EditCars/Create/CreateModal'
+import  {CreateModal} from '../components/StaffComponent/Index'
 
 const Login = () => {
   const auth = useAuth();
   const navigate= useNavigate()
-  const dispatch = useDispatch();
+  
 //  useEffect(()=>{
 //    dispatch(getAllUsers())
 //  },[])

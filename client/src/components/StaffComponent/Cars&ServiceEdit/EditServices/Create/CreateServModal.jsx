@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import style from '../styles/Modal.module.css'
+import style from '../../../generalStyles/ModalsForms/Modal.module.css'
 import CreateService from './CreateService';
 import GenericButton from '../../../../GenericButton/GenericButton';
 

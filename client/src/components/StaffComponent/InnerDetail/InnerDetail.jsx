@@ -5,13 +5,9 @@ import {useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {getMyServices} from '../../../redux/actions'
 import GenericButton from '../../GenericButton/GenericButton'
-import Edition from '../AdminHelpers/Edition/Edition';
 import EditWindow from '../../Auth/EditComponents/ModalEdit';
-import CreateModal from '../Cars&ServiceEdit/EditCars/Create/CreateModal'
-import CarryTable from '../ServiceComp/CarryTable'
-import CreateServModal from '../Cars&ServiceEdit/EditServices/Create/CreateServModal'
+import {CreateModal, CarryTable, CreateServModal, ModalEditCar, Edition} from '../Index'
 import {infoSelect, roles, estado, allowing} from '../AdminHelpers/Helpers/InfoMap';
-import ModalEditCar from '../Cars&ServiceEdit/EditCars/ModalEditCar'
 
 const InnerDetail = ({ type, data }) => {
   const {user}=useAuth()

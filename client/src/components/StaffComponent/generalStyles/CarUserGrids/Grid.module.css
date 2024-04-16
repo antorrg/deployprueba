@@ -7,10 +7,17 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 1.25rem;
-    max-height: 80vh;
+    grid-gap: 1.60rem;
+    max-height: 90vh;
     overflow: auto; /* Agrega esta línea para permitir el desplazamiento (scroll) */
     /* display: flex;
     flex-wrap:wrap;
     justify-content: center; */
+}
+@media (max-width: 768px) {
+    .cardList {
+        width: 90vw; /* Cambia el ancho a 100vw en dispositivos móviles */
+        margin-left: 0; /* Elimina el margen izquierdo */
+        margin-right: 0.8rem; /* Elimina el margen derecho */
+    }
 }

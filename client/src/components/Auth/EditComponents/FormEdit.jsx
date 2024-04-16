@@ -1,8 +1,6 @@
-import { useState, useCallback } from 'react';
-import axios from 'axios'
+import { useState} from 'react';
 import style from '../styles/Form.module.css';
 import GenericButton from '../../GenericButton/GenericButton';
-
 import {useAuth} from '../AuthContext/AuthContext'
 import EditPass from './EditPass';
 import showConfirmationDialog from '../../utils/sweetAlert'

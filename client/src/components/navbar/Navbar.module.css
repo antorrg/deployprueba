@@ -83,7 +83,6 @@
 
 /*la idea de esto es que se active en rojo cuando estas posicionado en esa seccion*/
 
-
 .logo {
   grid-column-start: 1;
   grid-column-end: 1;

@@ -14,11 +14,14 @@
     flex-direction: column;
     margin-top: 2em;
     margin-left: 2em;
-    border: 2px solid #332F2A;
+    border: 1px solid #332F2A;
     border-radius: 5px;
-    align-items: center;
-    height: 35em;
+
+    align-items: flex-start;
+    height: 25em;
     padding-top: 1em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
 
 .divCard {
@@ -51,4 +54,12 @@
     border-radius: 20px;
 
 
+}
+
+.optionText {
+    color: black;
+}
+
+.spanTitle {
+    justify-self: flex-start;
 }

@@ -4,6 +4,7 @@ import ImageCarrusel from "./ImageCarrusel";
 import CommerceEdit from "./CommerceEdit";
 import DefaultText from "./DefaultText";
 import DivButtonCustom from "./DivButtonCustom";
+import TipsEdit from "./TipsEdit";
 
 function Customize() {
   const [showComponent, setShowComponent] = useState({
@@ -20,6 +21,7 @@ function Customize() {
     showComponent.principal && <ImageLanding />,
     showComponent.carrusel && <ImageCarrusel />,
     showComponent.comercio && <CommerceEdit />,
+    showComponent.tips && <TipsEdit />,
     // Agregar más componentes aquí según sea necesario
   ];
 
@@ -60,7 +62,10 @@ function Customize() {
         <DivButtonCustom className="bg-warning bg-gradient">
           Servicios
         </DivButtonCustom>
-        <DivButtonCustom className="bg-secondary bg-gradient">
+        <DivButtonCustom
+          className="bg-secondary bg-gradient"
+          onClick={() => handleClick("tips")}
+        >
           Tips
         </DivButtonCustom>
         <DivButtonCustom
@@ -80,7 +85,10 @@ function Customize() {
         {showComponent.carrusel
           ? showComponent.carrusel && <ImageCarrusel />
           : null}
-        {showComponent.comercio && <CommerceEdit />}
+        {showComponent.tips ? showComponent.tips && <TipsEdit /> : null}
+        {showComponent.comercio
+          ? showComponent.comercio && <CommerceEdit />
+          : null}
         {/* Mostrar el componente DefaultText si ninguno de los componentes anteriores está visible */}
         {shouldShowDefaultText && <DefaultText />}
       </div>

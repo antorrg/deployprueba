@@ -1,4 +1,4 @@
-import style from './Row.module.css'
+import style from '../generalStyles/ServicesComponents/Row.module.css'
 import {Link, useNavigate, useLocation} from 'react-router-dom'
 
 const RowTable = ({data}) => {

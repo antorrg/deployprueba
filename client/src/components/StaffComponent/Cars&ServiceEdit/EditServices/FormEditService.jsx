@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios'
-import style from '../styles/Form.module.css';
+import style from '../../generalStyles/ModalsForms/Forms.module.css';
 import GenericButton from '../Buttons/GenericButton';
 import CloudinaryUpload from './CloudinaryUpload';
 //import { showSuccess, showError } from '../../Auth/HandlerError';

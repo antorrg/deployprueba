@@ -1,0 +1,19 @@
+.carryList {
+    background-color: rgb(250, 245, 239);
+    width: 70vw;
+    height: 50vh;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 1.5rem;
+    overflow: auto;
+}
+@media (max-width: 768px) {
+    .cardList {
+        width: 100vw; /* Cambia el ancho a 100vw en dispositivos móviles */
+        height: 70vh;
+        margin-left: 0; /* Elimina el margen izquierdo */
+        margin-right: 0; /* Elimina el margen derecho */
+    }
+}

@@ -4,7 +4,7 @@ import {getAllUsers}from '../../../../redux/actions'
 import GenericButton from '../../../GenericButton/GenericButton'
 import showConfirmationDialog from '../../../utils/sweetAlert'
 import sendChanges from './SendChanges'
-import styles from './styles/Form.module.css'
+import styles from '../../generalStyles/ModalsForms/Forms.module.css'
 
 const ChangeUser = ({carEdit, onClose}) => {
     const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import User from './User'
-import style from './styles/UserGrid.module.css'
+import style from '../generalStyles/CarUserGrids/Grid.module.css'
 import {userBynumId, getAllUsers} from '../../../redux/actions'
 import {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'

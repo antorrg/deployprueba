@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import InnerDetail from '../../components/StaffComponent/InnerDetail/InnerDetail'
+import { useEffect } from 'react';
+import {InnerDetail} from '../../components/StaffComponent/Index'
 import { useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import {getById, carById, cleanDetails} from '../../redux/actions'

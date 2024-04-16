@@ -1,5 +1,5 @@
 import Car from './Car'
-import style from './styles/CarGrid.module.css'
+import style from '../generalStyles/CarUserGrids/Grid.module.css'
 import {carByPat, getAllCars} from '../../../redux/actions'
 import {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'

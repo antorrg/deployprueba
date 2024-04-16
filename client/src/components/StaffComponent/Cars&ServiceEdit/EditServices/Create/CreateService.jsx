@@ -1,4 +1,4 @@
-import style from '../styles/Modal.module.css'
+import style from '../../../generalStyles/ModalsForms/Forms.module.css'
 import { useState } from "react";
 import { useNavigate} from "react-router-dom";
 import  ValidServCreate  from '../ServValidate';
@@ -82,7 +82,7 @@ const CreateService = ({closServ}) => {
   error.observations;
 
   return (
-    <div>
+    <div className={style.formContainer}>
       <form onSubmit={handleSubmit}>
        <div>
         <h3>Crear Servicio: </h3>

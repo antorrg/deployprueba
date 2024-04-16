@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import GenericButton from '../../../GenericButton/GenericButton';
-import { useAuth } from './../../../Auth/AuthContext/AuthContext';
+import style from './Edition.module.css'
+import { useAuth } from '../AuthContext/AuthContext';
 
-const Edition = ({ allowedRoles = (allowedRoles), exception, text, onClick }) => {
+const Edition = ({ allowedRoles = (allowedRoles), exception, text, onClick, className }) => {
+  let customClass = className? className : style.button 
   const { user } = useAuth();
   const permit = user ? user.role : null;
   
@@ -33,7 +34,7 @@ const Edition = ({ allowedRoles = (allowedRoles), exception, text, onClick }) =>
   return (
     <>
       {!exceptionLoading && (isPermitted||exception) && (
-        <GenericButton buttonText={text} onClick={onClick} />
+        <button onClick={onClick} className={customClass}>{text}</button>
       )}
     </>
   );
@@ -44,3 +45,4 @@ export default Edition;
 
 
 //alowedRoles={(0, 2)}
+
