@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import style from './styles/DetailAd.module.css'
 import {InnerDetail} from '../../components/StaffComponent/Index'
 import { useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
@@ -31,7 +32,7 @@ const DetailAd = () => {
   },[type, dispatch, id])
 
   return (
-    <div>
+    <div className={style.detail}>
       <br></br>
       <br></br>
       <br></br>

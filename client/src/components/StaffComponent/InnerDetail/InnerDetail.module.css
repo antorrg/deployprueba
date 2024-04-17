@@ -1,13 +1,14 @@
 .container{
     
- width: 90vw;
-display: flex;  
+ width: 80vw;
+/* display: flex;  
 flex-direction: column;
 justify-content: center;
-align-items: center;
-border: 1px solid grey;
-margin: 0;
-background-color: rgba(255, 255, 255, 0.144); /* Opacidad al 80% */
+align-items: center; */
+border: 1px solid rgb(46, 46, 46);
+margin-left: 10vw;
+margin-right: 10vw;
+background-color: rgba(255, 254, 254, 0.822); /* Opacidad al 80% */
 backdrop-filter: blur(5px); /* Difuminado de 5px */
 display: grid;
 grid-template-columns: 1fr 1fr;
@@ -22,4 +23,12 @@ margin: 0.7rem;
 text-decoration:none;
 overflow: auto; /* Agrega esta línea para permitir el desplazamiento (scroll) */
     
+}
+.list{
+    width:25vw;
+    height: 50vh;
+  }
+.serv{
+    display: grid;
+    grid-template-columns: 1fr;
 }

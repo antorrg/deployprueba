@@ -1,8 +1,9 @@
 .carryList {
-    background-color: rgb(250, 245, 239);
+    background-color: rgb(187, 185, 181);
     width: 70vw;
     height: 50vh;
-    margin: 0;
+    margin-left: 15vw; 
+    margin-right: 15vw;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;

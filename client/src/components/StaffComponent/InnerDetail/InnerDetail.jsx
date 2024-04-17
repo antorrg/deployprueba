@@ -86,7 +86,16 @@ const InnerDetail = ({ type, data }) => {
         <Edition onClick={()=>{navigate("/admin")}} text={'Panel Admin'} allowedRoles={[0, 2]}/>
           {type === 'car' && (
             <>
-            <ul>
+             <div>
+              <Edition allowedRoles={[0,2]} onClick={handEditCar } text={'Edit. Veh.'}/>
+              {serv? <div className={style.serv}><div><GenericButton onClick={servClose} buttonText={'Cerrar Serv'}/>
+              <Edition allowedRoles={[0,2]}  onClick={createServ} text={'Crear Serv'}/>
+              </div>
+              <CarryTable data= {services}/></div> : 
+              <GenericButton onClick={handleServ} buttonText={'Ver Servicios'}/>}
+              </div>
+              <GenericButton onClick={()=>{navigate(-1)}} buttonText={'Volver'}/>
+            <ul className={style.list}>
               <li>Patente: {data.patent}</li>
               <li>Marca: {data.mark}</li>
               <li>Modelo: {data.model}</li>
@@ -111,18 +120,17 @@ const InnerDetail = ({ type, data }) => {
               
               <img src={data.picture} style={{ maxWidth: '150px' }}/>
               <label>Observaciones: {data.observations}</label>
-              <div>
-              <Edition allowedRoles={[0,2]} onClick={handEditCar } text={'Edit. Veh.'}/>
-              {serv? <><GenericButton onClick={servClose} buttonText={'Cerrar Serv'}/>
-              <Edition allowedRoles={[0,2]}  onClick={createServ} text={'Crear Serv'}/>
-              <CarryTable data= {services}/></> : 
-              <GenericButton onClick={handleServ} buttonText={'Ver Servicios'}/>}
-              </div>
+             
             </>
           )}
           {type === 'user' && (
             <>
-             <ul>
+             <div>
+              <Edition allowedRoles={[0]}  exception={edt} onClick={handlerUser} text={'Edit Usuario'} />
+              <Edition allowedRoles={[0,2]}  onClick={handlerCreate} text={'Crear Vehiculo'} />
+              </div>
+              <GenericButton onClick={()=>{navigate(-1)}} buttonText={'Volver'}/>
+             <ul className={style.list}>
               <li>Email: {data.email}</li>
               <li>Nombre: {data.name}</li>
               <li>Apodo: {data.nickname}</li>
@@ -146,15 +154,9 @@ const InnerDetail = ({ type, data }) => {
               </div>
               : null}
               <img src={data.picture} style={{maxWidth:'150px'}}/>
-              <div>
-              <Edition allowedRoles={[0]}  exception={edt} onClick={handlerUser} text={'Edit Usuario'} />
-              </div>
-              <div>
-              <Edition allowedRoles={[0,2]}  onClick={handlerCreate} text={'Crear Vehiculo'} />
-              </div>
+             
             </>
           )}
-          <GenericButton onClick={()=>{navigate(-1)}} buttonText={'Volver'}/>
          {userEdition?
          <EditWindow userEdit={data} onClose={onClose} />:
          null}

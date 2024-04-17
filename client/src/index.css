@@ -4,8 +4,8 @@
   font-weight: 600;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
+  background: #7a7575; 
   background-color: #242424;
-  background-image: url('../../images/background01.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

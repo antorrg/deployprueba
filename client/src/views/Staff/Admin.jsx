@@ -38,15 +38,21 @@ const Admin = () => {
 
       <br></br>
       {/* <h2>Panel de Administrador:</h2> */}
-        <div className={style.cardList}>
       {(!service)?<>
+        <div className={style.cardList}>
       <GenericButton onClick={handleToggleServ} buttonText={'Ver Services'}/>
         <UserGrid />
-        <CarGrid /></>:
-       <><GenericButton onClick={handleHiddeServ} buttonText={'Ver Usuario/Vehic.'}/>
-        <CarryTable data={services}/></>}
-       <GenericButton  buttonText={'Programar servicio'}/>
+        <CarGrid />
+      <GenericButton  buttonText={'Programar servicio'}/>
        </div>
+        </>:
+        <><div>
+       <GenericButton onClick={handleHiddeServ} buttonText={'Ver Usuario/Vehic.'}/>
+       <GenericButton  buttonText={'Programar servicio'}/>
+        <CarryTable data={services}/>
+        </div>
+        </>}
+      
       
     </div>
   )
