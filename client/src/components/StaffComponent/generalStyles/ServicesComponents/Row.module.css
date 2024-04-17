@@ -14,7 +14,7 @@
     backface-visibility: hidden;
     transform: translateZ(0);
     transition: transform 0.50s ease-out;
-    z-index:1;
+    
     background-color: #f7f7f7;
   }
   .row:hover {
