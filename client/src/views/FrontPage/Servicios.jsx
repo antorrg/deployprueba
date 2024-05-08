@@ -40,7 +40,7 @@ const Servicios = () => {
   const openModal = (serviceKey) => {
     setSelectedService(servicesData[serviceKey]);
     setIsModalOpen(true);
-    console.log("modal " + isModalOpen);
+    // console.log("modal " + isModalOpen);
   };
 
   const closeModal = () => {
@@ -49,21 +49,26 @@ const Servicios = () => {
   };
 
   return (
-    <div className="container">
-      <h2 style={{ marginTop: "30px" }}>Nuestros servicios</h2>
-      <div className="row align-items-center justify-content-center">
+    <div className="container align-items-center justify-content-center my-5">
+      <h2 className="my-3">Nuestros servicios</h2>
+      <div className=" row align-items-center justify-content-center my-3">
         {servicesData ? (
           Object.keys(servicesData).map((serviceKey) => (
-            <div key={serviceKey} className="col-sm-6 col-md-4 col-lg-2">
-              <div style={{ height: "60px", marginTop: "30px" }}>
+            <div
+              key={serviceKey}
+              className="col-7 col-lg-2 col-md-2 col-sm-7 align-items-center justify-content-ceter "
+            >
+              <div style={{ height: "80px" }} className="">
                 <p>{servicesData[serviceKey].title}</p>
               </div>
               <div
+                className="mb-2"
                 style={{
                   width: "120%",
                   paddingTop: "200%",
                   position: "relative",
                   overflow: "hidden",
+                  // left: "-10%",
                 }}
               >
                 <div
@@ -73,32 +78,27 @@ const Servicios = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
+                    clipPath: "polygon(0% 0%, 75% 0%, 100% 100%, 25% 100%)",
+                    perspective: "100px",
                   }}
+                  onClick={() => openModal(serviceKey)} // Abrir modal al hacer clic en la imagen
                 >
-                  <div
+                  <img
+                    src={servicesData[serviceKey].url}
+                    alt=""
+                    className="img-fluid "
                     style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      clipPath: "polygon(0% 0%, 75% 0%, 100% 100%, 25% 100%)",
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      cursor: "pointer",
+                      transition: "transform 0.5s",
                     }}
-                    onClick={() => openModal(serviceKey)} // Abrir modal al hacer clic en la imagen
-                  >
-                    <img
-                      src={servicesData[serviceKey].url}
-                      alt=""
-                      className="img-fluid"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                        filter: "drop-shadow(6px 6px 10px rgba(50, 50, 0, 0.5)",
-                        cursor: "pointer", // Cambiar el tipo de puntero
-                      }}
-                    />
-                  </div>
+                    onMouseOver={(e) =>
+                      (e.target.style.transform = "translateZ(10px)")
+                    }
+                    onMouseOut={(e) => (e.target.style.transform = "none")}
+                  />
                 </div>
               </div>
             </div>
@@ -118,7 +118,23 @@ const Servicios = () => {
               &times;
             </span>
             <h3>{selectedService.title}</h3>
+            <div
+              className="container d-flex justify-content-center align-items-center overflow-hidden"
+              style={{ maxWidth: "500px", maxHeight: "200px" }}
+            >
+              <img
+                src={selectedService.url}
+                alt={`img${selectedService.title}`}
+                style={{
+                  opacity: "0.4",
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
             <p>{selectedService.description}</p>
+            <p style={{ fontSize: "smaller" }}>{selectedService.data}</p>
           </div>
         </div>
       )}

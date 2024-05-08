@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { imagesDB } from "../../firebase/firebaseConfig";
 import { ref, listAll, getDownloadURL, uploadBytes } from "firebase/storage";
+import TitleSegment from "./TitleSegment";
 
 function ImageCarrusel() {
   const [images, setImages] = useState(Array(9).fill(null));
+
+  //Datos para mostrar en el encabezado de la sub sección
+  const title = "Personaliza la sección Carrusel";
+  const detail =
+    "Podrás seleccionar hasta un máximo de nueve imágenes para mostrar en el carrusel. Deben ser de 500x500px, preferentemente en formato PNG y con fondo transparente";
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -73,57 +79,58 @@ function ImageCarrusel() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div>
-        <span>Imágenes Carrusel</span>
-      </div>
+    <div className="container align-items-center justify-content-center">
+      <TitleSegment title={title} detail={detail} />
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)", // 3 columnas con el mismo ancho
-          gap: "10px",
+          display: "flex",
           justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        {images.map((image, index) => (
-          <div
-            key={index}
-            style={{
-              width: "100px",
-              height: "100px",
-              border: "1px solid black",
-              margin: "10px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-            }}
-            onClick={() => handleImageClick(index)}
-          >
-            {image ? (
-              <img
-                src={image}
-                alt={`Image ${index}`}
-                style={{ maxWidth: "100%", maxHeight: "100%" }}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)", // 3 columnas con el mismo ancho
+            gap: "10px",
+            justifyContent: "center",
+          }}
+        >
+          {images.map((image, index) => (
+            <div
+              className="border d-flex align-items-center justify-content-center m-2 rounded"
+              key={index}
+              style={{
+                width: "120px",
+                height: "120px",
+                // border: "1px solid black",
+                // margin: "10px",
+                // display: "flex",
+                // alignItems: "center",
+                // justifyContent: "center",
+                cursor: "pointer",
+              }}
+              onClick={() => handleImageClick(index)}
+            >
+              {image ? (
+                <img
+                  src={image}
+                  alt={`Image ${index}`}
+                  style={{ maxWidth: "100%", maxHeight: "100%" }}
+                />
+              ) : (
+                "+"
+              )}
+              <input
+                type="file"
+                id={`fileCarrusel${index}`}
+                accept=".jpg, .jpeg, .png"
+                style={{ display: "none" }}
+                onChange={(e) => handleFileChange(index, e)}
               />
-            ) : (
-              "+"
-            )}
-            <input
-              type="file"
-              id={`fileCarrusel${index}`}
-              accept=".jpg, .jpeg, .png"
-              style={{ display: "none" }}
-              onChange={(e) => handleFileChange(index, e)}
-            />
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

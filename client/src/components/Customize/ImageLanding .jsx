@@ -10,6 +10,7 @@ import {
 import DivImageCustom from "./DivImageCustom";
 import Swal from "sweetalert2";
 import validateImage from "../utils/ImageValidator";
+import TitleSegment from "./TitleSegment";
 
 function ImageLanding() {
   const [images, setImages] = useState(Array(3).fill(null));
@@ -188,28 +189,26 @@ function ImageLanding() {
     }
   };
 
+  //Datos para mostrar en el encabezado de la sub sección
+  const title = "Imagen principal";
+  const detail = `Selecciona de una y tres imágenes que se mostrarán como principales en
+          tu App. Aleatoriamente se mostrará una de ellas. Escoge un
+          formato .jpg, .jpeg, .png, con orientación apaisada.
+          Dimension y peso aceptado:
+          Ancho: ${minWidthAccepted} a ${maxWidthAccepted} px.
+          Alto: ${minHeightAccepted} a ${maxHeigthAccepted} px. 
+          Peso: ${minSizeKBaccepted} a ${maxSizeKBaccepted} KB`;
+
   return (
     <div className="container align-items-center justify-content-center">
-      <div>
-        <h4>Imagen principal</h4>
-      </div>
-      <div className=" container w-75">
-        <p>
-          Selecciona de una y tres imágenes que se mostrarán como principales en
-          tu App. Aleatoriamente se mostrará una de ellas. <br /> Escoge un
-          formato .jpg, .jpeg, .png, con orientación apaisada. <br />
-          Dimension y peso aceptado: <br />
-          Ancho: {minWidthAccepted} a {maxWidthAccepted} px. <br />
-          Alto: {minHeightAccepted} a {maxHeigthAccepted} px. <br />
-          Peso: {minSizeKBaccepted} a {maxSizeKBaccepted} KB.
-        </p>
-      </div>
+      <TitleSegment title={title} detail={detail} />
       <div
         className="container row"
         style={{
           gridTemplateColumns: "repeat(3, 1fr)", // 3 columnas con el mismo ancho
           justifyContent: "center",
           alignItems: "center",
+          minHeight: "400px",
         }}
       >
         {images.map((image, index) => (

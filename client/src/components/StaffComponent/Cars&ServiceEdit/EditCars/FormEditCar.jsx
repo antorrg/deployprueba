@@ -1,24 +1,18 @@
-import { useState } from 'react';
-import style from '../../generalStyles/ModalsForms/Forms.module.css';
-import GenericButton from '../../../GenericButton/GenericButton';
-import showConfirmationDialog from '../../../utils/sweetAlert'
-import ImgUpFire from '../../../ImgUpFire/ImgUpFire';
-
-
-
-
+import { useState } from "react";
+import style from "../../generalStyles/ModalsForms/Forms.module.css";
+import GenericButton from "../../../GenericButton/GenericButton";
+import showConfirmationDialog from "../../../utils/sweetAlert";
+import ImgUpFire from "../../../ImgUpFire/ImgUpFire";
+import DivInput from "../../../GenericButton/DivInput";
 
 const FormEditCar = ({ editedCar, onInputChange, onSaveChanges }) => {
   const [imageUrl, setImageUrl] = useState(editedCar.picture);
-  
-   
-  
-   const onImageChange = (url) => {
-     setImageUrl(url);
-     //console.log(setImageUrl)
-     onInputChange("picture", url);
-   };
-   
+
+  const onImageChange = (url) => {
+    setImageUrl(url);
+    //console.log(setImageUrl)
+    onInputChange("picture", url);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,121 +21,83 @@ const FormEditCar = ({ editedCar, onInputChange, onSaveChanges }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const confirmed = await showConfirmationDialog('¿Está seguro de actualizar el vehiculo?');
+    const confirmed = await showConfirmationDialog(
+      "Seguro desea actualizar el vehículo?"
+    );
     if (confirmed) {
-        // Si el usuario hace clic en "Aceptar", ejecutar la funcion:
-        onSaveChanges() 
+      // Si el usuario hace clic en "Aceptar", ejecutar la funcion:
+      onSaveChanges();
     }
-   
   };
 
   return (
     <div className={style.formContainer}>
-       <h3 >Editar Vehiculo</h3>
-        <label>
-          {imageUrl && <img style={{maxWidth:'120px'}} src={imageUrl} alt="Current Car" />}
-        </label>
-        <ImgUpFire maxImages={1} uploadImgs={onImageChange}/>
-    <form onSubmit={handleSubmit}>
-     <div>
-       </div>   
-       <div >
-         <input
-           type="text"
-           placeholder="patente"
-           value={editedCar.patent}
-           name="patent"
-           autoComplete="off"
-           onChange={handleInputChange}
-           className=''
-         />
-         <label > Patente: </label>
-       </div>
-       <br/>
-       <div >
-         <input
-           type="text"
-           placeholder="marca"
-           value={editedCar.mark}
-           name="mark"
-           autoComplete="off"
-           onChange={handleInputChange}
-           className=''
-         />
-         <label > Marca: </label>
-       </div>
-       <br/>
-       <div >
-         <input
-           type="text"
-           placeholder="modelo"
-           value={editedCar.model}
-           name="model"
-           autoComplete="off"
-           onChange={handleInputChange}
-           className=''
-         />
-         <label > Modelo: </label>
-       </div>
-  <br/>
-  <div >
-         <input
-           type="text"
-           placeholder="año"
-           value={editedCar.year}
-           name="year"
-           autoComplete="off"
-           onChange={handleInputChange}
-           className=''
-         />
-         <label > Año: </label>
-       </div>
-       <br/>
-       <div >
-         <input
-           type="text"
-           placeholder="motorNum"
-           value={editedCar.motorNum}
-           name="motorNum"
-           autoComplete="off"
-           onChange={handleInputChange}
-           className=''
-         />
-         <label > Numero de Motor: </label>
-       </div>
-       <br/>
-       <div >
-         <input
-           type="text"
-           placeholder="chassisNum"
-           value={editedCar.chassisNum}
-           name="chassisNum"
-           autoComplete="off"
-           onChange={handleInputChange}
-           className=''
-         />
-         <label > Numero de chasis: </label>
-  
-       </div>
-       <br/>
-       <div >
-         <textarea
-           type="text"
-           placeholder="observaciones"
-           value={editedCar.observations}
-           name="observations"
-           autoComplete="off"
-           onChange={handleInputChange}
-           className=''
-         />
-         <label > Observaciones: </label>
-     
-       </div>
-       <br/>
-  <GenericButton type='submit' buttonText={'Editar Vehiculo'}/>
-    </form>
-  </div>
-);
+      <div>
+        <p className="fs-4 mb-3">Editar Vehículo</p>
+      </div>
+
+      <div
+        className="border rounded shadow my-3 mx-auto"
+        style={{ maxWidth: "150px" }}
+      >
+        {imageUrl && (
+          <img
+            style={{ width: "100%", height: "auto" }}
+            src={imageUrl}
+            alt="Current Car"
+          />
+        )}
+      </div>
+      <ImgUpFire maxImages={1} uploadImgs={onImageChange} />
+      <form onSubmit={handleSubmit}>
+        <DivInput
+          labelText={"Patente"}
+          name={"patent"}
+          value={editedCar.patent}
+          handleChange={handleInputChange}
+        />
+        <DivInput
+          labelText={"Marca"}
+          name={"mark"}
+          value={editedCar.mark}
+          handleChange={handleInputChange}
+        />
+        <DivInput
+          labelText={"Modelo"}
+          name={"model"}
+          value={editedCar.model}
+          handleChange={handleInputChange}
+        />
+        <DivInput
+          labelText={"Año"}
+          name={"year"}
+          value={editedCar.year}
+          handleChange={handleInputChange}
+        />
+        <DivInput
+          labelText={"N° motor"}
+          name={"motorNum"}
+          value={editedCar.motorNum}
+          handleChange={handleInputChange}
+        />
+        <DivInput
+          labelText={"N° chasis"}
+          name={"chassisNum"}
+          value={editedCar.chassisNum}
+          handleChange={handleInputChange}
+        />
+        <DivInput
+          labelText={"Notas"}
+          name={"observations"}
+          value={editedCar.observations}
+          handleChange={handleInputChange}
+          type="area"
+        />
+
+        <GenericButton type="submit" buttonText={"Actualizar"} />
+      </form>
+    </div>
+  );
 };
 
 export default FormEditCar;

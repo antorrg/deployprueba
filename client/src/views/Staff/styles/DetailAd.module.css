@@ -3,12 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: #242424; */
-    background: #dfdede; 
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #85929E ;
     height: 100vh;
     width: 100vw;
   }
- 

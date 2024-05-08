@@ -1,10 +1,10 @@
 import React from 'react'
 import style from './Card.module.css'
 
-const Card = ({ titulo, imagen, descripcion }) => {
-
+const Card = ({ titulo, imagen, descripcion, elModal }) => {
+  const cardInfo = { title: titulo, image: imagen, description: descripcion, }
   return (
-    <div className={style.bigDiv}>
+    <div className={style.bigDiv} onClick={() => elModal(cardInfo)}>
 
       <div className={style.divImg}>
         <img className={style.img} src={imagen} alt="" />

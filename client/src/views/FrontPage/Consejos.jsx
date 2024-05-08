@@ -31,7 +31,7 @@ const Consejos = () => {
       <div className="row align-items-center justify-content-center">
         {postFavorites && postFavorites.length ? (
           postFavorites.map((tip) => (
-            <div key={tip.id} style={{ width: "350px", margin: "10px" }}>
+            <div key={tip.idPost} style={{ width: "350px", margin: "10px" }}>
               <div
                 className="align-items-center justify-content-center"
                 style={{

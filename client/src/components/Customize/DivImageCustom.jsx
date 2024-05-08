@@ -27,7 +27,7 @@ function DivImageCustom({
         overflow: "hidden",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        margin: "5px",
+        margin: "10px",
         backgroundImage: image ? `url(${image})` : "none",
         backgroundColor: image ? "none" : "lightgray",
       }}

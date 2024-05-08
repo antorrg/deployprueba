@@ -1,0 +1,20 @@
+@media only screen and (max-width: 900px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .secondBigDiv {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .img {
+        height: 20em;
+    }
+
+    .imgDiv {
+        width: 10em;
+
+    }
+}

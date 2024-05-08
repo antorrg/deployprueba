@@ -20,6 +20,7 @@ import {
   GET_ORDER_TIPS,
   STATE_FILTER_TIPS,
   OPTION_FILTER,
+  SEARCH_TIPS,
 } from "./actions";
 
 const initialState = {
@@ -46,7 +47,8 @@ const initialState = {
     columnorder: "titlePost",
     order:"ASC"
   },
-  optionFilter:{category: "Todos", order:"nameAsc"}
+  optionFilter: { category: "Todos", order: "nameAsc" },
+  tipsSearch:[]
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -140,10 +142,7 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     case ALL_PROVINCES:
       return { ...state, allProvinces: payload };
-    default:
-      return {
-        ...state,
-      };
+   
     
     case ALL_CATEGORY_TIPS:
       return {
@@ -167,6 +166,22 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         optionFilter:payload,
       }
+      default:
+        return {
+          ...state,
+      };
+    
+    //%%%%%%%%%%%%SEARCH TIPS///
+    case SEARCH_TIPS:
+  const keyword = payload; // Palabra clave para buscar
+
+  // Filtrar los tips que contienen la palabra clave en su nombre
+  const filteredTips = state.allTips.filter(tip => tip.titlePost.toLowerCase().includes(keyword.toLowerCase()));
+
+  return {
+    ...state,
+    tipsSearch: filteredTips
+  };
   }
 };
 
