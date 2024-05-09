@@ -1,4 +1,5 @@
 import style from "./Navbar.module.css";
+import {useState} from 'react'
 import { NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Link, animateScroll as scroll } from "react-scroll";
 import { useAuth } from "../Auth/AuthContext/AuthContext";
@@ -11,6 +12,8 @@ const Navbar = () => {
   const { authenticated, user, logout } = useAuth();
   const { pathname } = useLocation();
   const navigate = useNavigate();
+    //Logica para hacer que aparezca ingresar en la hamburguesa:
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const admin = user?.role === 0 ? true : false;
   const noRoutes =
@@ -162,6 +165,7 @@ const Navbar = () => {
         data-bs-target="#offcanvasDarkNavbar"
         aria-controls="offcanvasDarkNavbar"
         aria-label="Toggle navigation"
+        onClick={() => setIsMenuOpen(!isMenuOpen)} // Toggle para abrir/cerrar el menú
       >
         <span className={style.togglerIcon}>&#9776;</span>
       </button>
@@ -200,7 +204,7 @@ const Navbar = () => {
                 />
               )}
             </li>
-            {/* {authenticated ? null : (
+            {authenticated ? null : (
               <>
                 <li className="nav-item" data-bs-dismiss="offcanvas">
                   <NavLink to="/login">
@@ -210,7 +214,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
               </>
-            )} */}
+            )} 
             <li className="nav-item" data-bs-dismiss="offcanvas">
               <LoginLinks />
             </li>
