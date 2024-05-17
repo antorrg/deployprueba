@@ -20,6 +20,16 @@ import {
   allowing,
 } from "../AdminHelpers/Helpers/InfoMap";
 
+//Div de los del vehículos para renderizar
+const DivList = ({ text, data }) => {
+  return (
+    <div className="container row border rounded my-1 mx-auto">
+      <span className="text-start col-4 border-end">{text}</span>
+      <span className="text-start col-8 ">{data}</span>
+    </div>
+  );
+};
+
 const InnerDetail = ({ type, data }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -112,7 +122,7 @@ const InnerDetail = ({ type, data }) => {
           <div className="container border border-warning-subtle rounded justify-content-center align-items-center">
             {/*div de la Card */}
             <div
-              className="my-4 col-xl-8 col-lg-10 mx-auto row border rounded shadow"
+              className="my-4 col-xl-8 col-lg-10 mx-auto row border rounded shadow py-3"
               style={{ backgroundColor: "rgb(217, 206, 179)" }}
             >
               {/*contenedor de la imagen */}
@@ -128,21 +138,22 @@ const InnerDetail = ({ type, data }) => {
               </div>
               {/*contenedor de la lista  */}
               <div className="col-md-8">
-                <ul className={style.list} style={{ listStyle: "none" }}>
-                  <li>Patente: {data.patent}</li>
-                  <li>Marca: {data.mark}</li>
-                  <li>Modelo: {data.model}</li>
-                  <li>Año: {data.year}</li>
-                  <li>N° motor: {data.motorNum}</li>
-                  <li>N° chasis: {data.chassisNum}</li>
-                  <li>Estado: {enable}</li>
-                  <li>
-                    Creado: {new Date(data.createdAt).toLocaleDateString()}
-                  </li>
-                  <li>
-                    Actualizado: {new Date(data.updatedAt).toLocaleDateString()}
-                  </li>
-                </ul>
+                <DivList text={"Patente"} data={data.patent} />
+                <DivList text={"Marca"} data={data.mark} />
+
+                <DivList text={"Modelo"} data={data.model} />
+                <DivList text={"Año"} data={data.year} />
+                <DivList text={"N° motor"} data={data.motorNum} />
+                <DivList text={"N° chasis"} data={data.chassisNum} />
+                <DivList text={"Estado"} data={enable} />
+                <DivList
+                  text={"Creado"}
+                  data={new Date(data.createdAt).toLocaleDateString()}
+                />
+                <DivList
+                  text={"Actualizado"}
+                  data={new Date(data.updatedAt).toLocaleDateString()}
+                />
               </div>
             </div>
             {user.role && user.role === 1 ? null : (
@@ -187,7 +198,7 @@ const InnerDetail = ({ type, data }) => {
                       text={"Crear Serv"}
                     />
                   </div>
-                  <div className="m-2 col-8">
+                  <div className="container m-2 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-10">
                     <CarryTable data={services} />
                   </div>
                 </>
@@ -205,51 +216,73 @@ const InnerDetail = ({ type, data }) => {
       )}
       {type === "user" && (
         <div className="container border border-warning-subtle rounded">
-          <div
-            className="container rounded-circle overflow-hidden d-flex align-items-center justify-content-center my-3"
-            style={{ maxHeight: "150px", maxWidth: "150px" }}
-          >
+          {/*Contenedor de la imagen */}
+          <div className="container my-3">
             <img
               src={data.picture}
-              style={{ width: "auto", height: "100%", objectFit: "cover" }}
-              className="align-self-center"
+              style={{
+                width: "180px",
+                height: "180px",
+                objectFit: "cover",
+                borderRadius: "50%",
+              }}
+              className="border "
             />
           </div>
 
-          <div className="row  my-3">
-            <div className="col my-2">
-              <ul className={style.list} style={{ listStyleType: "none" }}>
-                <li>Email: {data.email}</li>
-                <li>Nombre: {data.name}</li>
-                <li>Apodo: {data.nickname}</li>
-                <li>Tipo documento: {data.typeId}</li>
-                <li>Número documento: {data.numberId}</li>
-                <li>Rol: {rol}</li>
-                <li>País: {data.country}</li>
-                <li>Estado: {enable}</li>
-                <li>Creado: {new Date(data.createdAt).toLocaleDateString()}</li>
-                <li>
-                  Actualizado: {new Date(data.updatedAt).toLocaleDateString()}
-                </li>
-              </ul>
+          {/*contenedor de los datos */}
+          <div className="container row my-3">
+            {/*contenedor de datos de usuario */}
+            <div className="col-lg-6 my-2 mx-auto">
+              <DivList text={"Email"} data={data.email} />
+              <DivList text={"Nombre"} data={data.name} />
+              <DivList text={"Apodo"} data={data.nickname} />
+
+              <DivList text={"Tipo Doc."} data={data.typeId} />
+              <DivList text={"N° documento"} data={data.numberId} />
+              <DivList text={"Rol"} data={rol} />
+              <DivList text={"País"} data={data.country} />
+              <DivList text={"Estado"} data={enable} />
+              <DivList
+                text={"Creado"}
+                data={new Date(data.createdAt).toLocaleDateString()}
+              />
+              <DivList
+                text={"Actualizado"}
+                data={new Date(data.updatedAt).toLocaleDateString()}
+              />
             </div>
+            {/*contendor de las patentes de vehículos del usuario */}
             {user.role === 0 || user.role === 2 ? (
-              <div className="col my-2">
-                <p>Vehículo:</p>
+              <div className="col-lg-6 my-2 mx-auto">
+                <p>Vehículos:</p>
                 {propietarios?.map((propietario, index) => (
-                  <span key={index}>
-                    <Link to={`/admin/dett/${propietario.id}?type=car`}>
-                      Patente: {propietario.name}
-                    </Link>
-                    {index !== propietarios.length - 1 ? ", " : ""}
-                  </span>
+                  <div
+                    key={index}
+                    className="d-flex align-items-center justify-content-center"
+                  >
+                    <div
+                      className="border border-black border-2 rounded my-2 mx-auto"
+                      style={{ width: "160px", textAlign: "center" }}
+                    >
+                      <div
+                        style={{ height: "20px", backgroundColor: "blue" }}
+                      ></div>
+                      <div>
+                        <Link to={`/admin/dett/${propietario.id}?type=car`}>
+                          {propietario.name}
+                        </Link>
+                      </div>
+                    </div>
+                    {/* {index !== propietarios.length - 1 ? ", " : ""} */}
+                  </div>
                 ))}
               </div>
             ) : null}
           </div>
-
-          <div className="d-flex flex-wrap justify-content-center">
-            <div className="m-2">
+          {/*contenedor de los botones inferiores */}
+          <div className="container d-flex flex-wrap gap-1 justify-content-center mb-2">
+            <div>
               <Edition
                 allowedRoles={[0]}
                 exception={edt}
@@ -257,7 +290,7 @@ const InnerDetail = ({ type, data }) => {
                 text={"Editar Usuario"}
               />
             </div>
-            <div className="m-2">
+            <div>
               <Edition
                 allowedRoles={[0, 2]}
                 onClick={handlerCreate}

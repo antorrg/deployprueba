@@ -3,9 +3,11 @@ import { Commerce, Province } from "../../db.js";
 
 const updateCommerce = async (req, res) => {
   const { id } = req.params;
+ 
   const updateData = req.body;
   const { idProvince, isMyCommerce } = req.body;
 
+ 
   console.log("aca");
   console.log(updateData);
   //verificar si recibe id

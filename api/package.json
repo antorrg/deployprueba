@@ -22,7 +22,8 @@
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "postgres": "^3.4.3",
-    "sequelize": "^6.37.1"
+    "sequelize": "^6.37.1",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "axios": "^1.6.7",

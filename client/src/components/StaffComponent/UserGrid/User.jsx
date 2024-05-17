@@ -42,7 +42,7 @@ const User = ({ data }) => {
               Email: <span title={email}>{truncatedEmail}</span>
             </p>
             <p className="card-text">Estado: {usuario(enable)}</p>
-            <p classNa me="card-text">
+            <p className="card-text">
               <div className="border rounded">
                 <p>Vehículos:</p>
                 {vehiculos?.map((vehiculo, index) => (

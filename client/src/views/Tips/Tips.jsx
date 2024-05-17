@@ -102,13 +102,12 @@ function Tips() {
             <div className={style.divMenuFilter}>
                 <h3 className={style.h3Title}>Filtros y busquedas</h3>
                 <hr></hr>
+                <div class={`input-group flex-nowrap ${style.divSearch}`}>
+                    <span class="input-group-text" id="addon-wrapping">Buscar</span>
+                    <input type="text" class="form-control" placeholder="tips" aria-label="Username" aria-describedby="addon-wrapping" onChange={(el) => handlerSearch(el)}></input>
+                </div>
                 <div className={style.categoryDiv}>
-                    <div class="input-group flex-nowrap">
-                        <span class="input-group-text" id="addon-wrapping">Buscar</span>
-                        <input type="text" class="form-control" placeholder="tips" aria-label="Username" aria-describedby="addon-wrapping" onChange={(el) => handlerSearch(el)}></input>
-                    </div>
-                    <br></br>
-                    <br></br>
+
                     <span className={style.spanTitle}>Categorias</span>
                     <select value={optionFilter.category} onChange={(el) => handlerSelect(el)} class="form-select" aria-label="Default select example" >
                         <option key={0} >Todos</option>
@@ -120,8 +119,7 @@ function Tips() {
 
                     </select>
                 </div>
-                <br></br>
-                <br></br>
+
                 <div className={style.orderDiv}>
                     <span className={style.spanTitle}>Ordenar por:</span>
                     <select value={optionFilter.order} onChange={(el) => handlerSelect(el)} className={`form-select ${style.selectOrder}`} aria-label="Default select example">

@@ -6,7 +6,7 @@ const createService = async ( type, detail, date_in, date_out, observations, pic
         // Buscar el automóvil
         const carFound = await Car.findByPk(carId);
         if (!carFound) {
-            throw new Error('Automóvil no encontrado');
+            const error = new Error('Automóvil no encontrado');error.status = 400; throw error;
         }
         // Verificar si ya existe un servicio para las fechas especificadas
         const existingService = await Service.findOne({
@@ -20,7 +20,8 @@ const createService = async ( type, detail, date_in, date_out, observations, pic
         });
 
         if (existingService) {
-            throw new Error('Ya existe un servicio para estas fechas');
+            const error = new Error('Ya existe un servicio para estas fechas');error.status = 400; throw error;
+          
         }
 
         // Crear el nuevo servicio
@@ -50,4 +51,4 @@ const createService = async ( type, detail, date_in, date_out, observations, pic
 
 
 
-export default createService;
+export default createService

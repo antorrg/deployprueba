@@ -13,6 +13,7 @@ const generateToken = (user)=>{
 
 const verifyToken =(req, res, next)=>{
     const token = req.headers['x-access-token']||req.headers.authorization;
+    
     if(!token){return res.status(401).json({error: 'Access denied. Missing token'})};
     verify(token, SECRET_KEY, (err, decoded)=>{
         if(err){

@@ -3,6 +3,7 @@ import { Commerce, Province } from "../../db.js";
 const deleteCommerce = async (req, res) => {
   const { idCommerce } = req.params;
 
+
   if (!idCommerce) {
     return res.status(400).json({ error: "Se requiere id de Comercio" });
   }

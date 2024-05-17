@@ -1,5 +1,7 @@
 import { Provider, CategoryProvider, Province } from "../../db.js";
 import { Op } from "sequelize";
+import parseProvider from "./helpers/parseProviders.js";
+
 
 const getProvider = async (req, res) => {
   const { searchRazon, searchFantasia, searchContacto, filterCategory, order } =
@@ -32,7 +34,7 @@ const getProvider = async (req, res) => {
         },
         order: [["fantasia", order || "ASC"]],
         include: [
-          { model: CategoryProvider, attributes: ["descCategory"] },
+          { model: CategoryProvider, attributes: ["descCategory", "idCategory"] },
           { model: Province, attributes: ["descProvince"] },
         ],
       });
@@ -45,7 +47,7 @@ const getProvider = async (req, res) => {
         },
         order: [["contacto", order || "ASC"]],
         include: [
-          { model: CategoryProvider, attributes: ["descCategory"] },
+          { model: CategoryProvider, attributes: ["descCategory", "idCategory"] },
           { model: Province, attributes: ["descProvince"] },
         ],
       });
@@ -56,7 +58,7 @@ const getProvider = async (req, res) => {
         },
         order: [["razonsocial", order || "ASC"]],
         include: [
-          { model: CategoryProvider, attributes: ["descCategory"] },
+          { model: CategoryProvider, attributes: ["descCategory", "idCategory"] },
           { model: Province, attributes: ["descProvince"] },
         ],
       });
@@ -69,8 +71,9 @@ const getProvider = async (req, res) => {
         ],
       });
     }
+    const dataClean = parseProvider(data, true)
 
-    res.status(200).json(data);
+    res.status(200).json(dataClean);
   } catch (error) {
     res.status(400).json({ error: "Error al obtener los Proveedores" });
   }

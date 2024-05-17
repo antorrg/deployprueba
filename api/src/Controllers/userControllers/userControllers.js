@@ -5,7 +5,8 @@ import bcrypt from 'bcrypt'
 
 
 const getUsers = async () => {
-  const {email1,email2} = getEmails()  
+  const {email1,email2} = getEmails()
+ 
   try {
     const response = await User.findAll({
       where: {
@@ -24,14 +25,14 @@ const getUsers = async () => {
     });
     const data = response;
     if (!data) {
-      throw new Error("Users not found");
+      const error = new Error('Users not found'); error.status = 400; throw error;
+    
     }
     return data;
   } catch (error) {
     throw error;
   }
 };
-
 const userByQuery = async (numberId) => {
   try {
     const response = await User.findOne({
@@ -49,7 +50,8 @@ const userByQuery = async (numberId) => {
     });
     const data = response;
     if (!data) {
-      throw new Error("Car not found");
+      const error = new Error('User not found'); error.status = 400; throw error;
+      
     }
     return data;
   } catch (error) {
@@ -72,7 +74,8 @@ const userById = async (id) => {
     });
     const data = response;
     if (!data) {
-      throw new Error("User not found!");
+      const error = new Error('User not found!'); error.status = 400; throw error;
+      
     }
     return data;
   } catch (error) {
@@ -84,12 +87,13 @@ const updateUser = async (id, newData) => {
  
   try {
     if (!id) {
-      throw new Error("No se encontró un id valido");
+      const error = new Error('No se encontró un id valido'); error.status = 400; throw error;
     }
     const user = await User.findByPk(id);
 
     if (!user) {
-      throw new Error("Usuario no encontrado");
+      const error = new Error('Usuario no encontrado'); error.status = 400; throw error;
+    
     }//Si newData con contiene password toma este camino
     if (!newData.password) {
       const parsedData = {
@@ -124,7 +128,7 @@ const updateUser = async (id, newData) => {
 const deleteUser = async (id) => {
  try {
    const userD = await User.findByPk(id);
-   if(!userD){throw new Error('Usuario no encontrado')};
+   if(!userD){const error = new Error('Usuario no encontrado'); error.status = 400; throw error;};
    userD.update({deletedAt: true});
    return userD;
  } catch (error) {

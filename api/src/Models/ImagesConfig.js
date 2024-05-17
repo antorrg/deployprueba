@@ -25,6 +25,10 @@ export default (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
+      deletedAt:{
+        type: DataTypes.BOOLEAN,
+        defaultValue:false
+      },
     },
     { timestamps: false }
   );

@@ -20,15 +20,13 @@ const getCar = async () => {
         throw error;
     }
 }
-const getByQuery = async (patent)=>{
-    console.log('soy el parametro: ', patent)
+const getByQuery = async(patent)=>{
     try {
         const response = await Car.findOne({
-            where: {
-                patent: patent,
+            where:{
+                patent:patent,
                 deletedAt:false,
-            },
-             include: [
+            }, include: [
                 {
                   model: User,
                   attributes: ["name" , "id"],
@@ -36,7 +34,7 @@ const getByQuery = async (patent)=>{
                  }]
         });
         const data = response;
-        if(!data){throw new Error('Car not found')};
+        if(!data){const error = new Error('Car not found'); error.status= 500; throw error;};
         return data;
     } catch (error) {
         throw error;
@@ -58,7 +56,7 @@ const carById = async (id)=>{
                  }]
         });
         const data = response;
-        if(!data){throw new Error('Car not found!')}
+        if(!data){const error = new Error('Car not found!'); error.status = 500; throw error;}
         return data;
     } catch (error) {
         throw error;

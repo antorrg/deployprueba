@@ -8,21 +8,23 @@ const updateDomCar = async (id, body) => {
         transaction = await sequelize.transaction();
 
         if (!userId) {
-            throw new Error("No se encontró un índice válido");
+            const error = new Error("No se encontró un índice válido");error.status = 400; throw error;
         }
 
         const newUser = await User.findByPk(userId, { transaction });
         if (!newUser) {
-            throw new Error("Usuario no encontrado");
+            const error = new Error("Usuario no encontrado");error.status = 400; throw error;
         }
 
         if (!id) {
-            throw new Error("No se encontró un ID válido");
+            const error = new Error("No se encontró un ID válido");error.status = 400; throw error;
+          
         }
 
         const car = await Car.findByPk(id, { transaction });
         if (!car) {
-            throw new Error("Vehículo no encontrado");
+            const error = new Error("Vehículo no encontrado");error.status = 500; throw error;
+        
         }
 
         // Actualizar la relación entre el usuario y el vehículo

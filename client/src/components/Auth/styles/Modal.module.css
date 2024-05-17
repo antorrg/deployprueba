@@ -13,7 +13,7 @@
   /* border: 1px solid rgb(255, 245, 221); */
   padding: 1.5rem;
   border-radius: 1rem;
-  width: 40%;
+  width: 45%;
   /* Increase to 75% for a 15% increase */
   /* height: 100%; */
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
@@ -35,9 +35,20 @@
   gap: 1rem;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 990px) {
   .modal {
-    width: 90%;
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .modal {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .modal {
+    width: 60%;
   }
 }
 

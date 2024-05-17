@@ -1,12 +1,12 @@
 import { CategoryPost, Post } from "../../db.js";
 
 const updatePost = async (req, res) => {
-  const { idPost } = req.params;
-  const updateData = req.body;
+  const { id } = req.params;
+  const updatePost = req.body;
   const { idCategory } = req.body;
 
-  //verificar si recibe idPost
-  if (!idPost) {
+  //verificar si recibe id
+  if (!id) {
     return res
       .status(400)
       .json({ error: "Se requiere id del Post a modificar" });
@@ -14,7 +14,7 @@ const updatePost = async (req, res) => {
 
   try {
     //verificar si el Post por id existe
-    const postSelected = await Post.findByPk(idPost);
+    const postSelected = await Post.findByPk(id);
     if (!postSelected) {
       return res.status(400).json({ error: "Post no encontrado" });
     }
@@ -26,10 +26,10 @@ const updatePost = async (req, res) => {
       }
     }
     // Actualizar el Post con los datos proporcionados
-    await postSelected.update(updateData);
+    await postSelected.update(updatePost);
 
     // Devolver los datos actualizados del Post
-    const updatedPost = await Post.findByPk(idPost);
+    const updatedPost = await Post.findByPk(id);
 
     res.status(201).json(updatedPost);
   } catch (error) {

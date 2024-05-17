@@ -21,6 +21,7 @@ import {
   STATE_FILTER_TIPS,
   OPTION_FILTER,
   SEARCH_TIPS,
+  ALL_PROVIDERS,
 } from "./actions";
 
 const initialState = {
@@ -45,14 +46,22 @@ const initialState = {
   variableFilter: {
     cat: 0,
     columnorder: "titlePost",
-    order:"ASC"
+    order: "ASC",
   },
   optionFilter: { category: "Todos", order: "nameAsc" },
-  tipsSearch:[]
+  tipsSearch: [],
+  allProviders: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    //&&&&&&& Providers - Proveedores &&&&&&
+    case ALL_PROVIDERS:
+      return {
+        ...state,
+        allProviders: payload,
+      };
+    //&&&&&&& End Providers - Proveedores &&&&&&
     case LOGIN_USER:
       //console.log('usuario comun reducer  '+payload)
       return {
@@ -142,46 +151,47 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     case ALL_PROVINCES:
       return { ...state, allProvinces: payload };
-   
-    
+
     case ALL_CATEGORY_TIPS:
       return {
         ...state,
-        allCategoryTips:payload,
-      }
-    
+        allCategoryTips: payload,
+      };
+
     case GET_ORDER_TIPS:
       return {
         ...state,
-        allTips:payload,
-      }
-    
+        allTips: payload,
+      };
+
     case STATE_FILTER_TIPS:
       return {
-        ...state, 
+        ...state,
         variableFilter: payload,
-      }
+      };
     case OPTION_FILTER:
       return {
         ...state,
-        optionFilter:payload,
-      }
-      default:
-        return {
-          ...state,
+        optionFilter: payload,
       };
-    
+    default:
+      return {
+        ...state,
+      };
+
     //%%%%%%%%%%%%SEARCH TIPS///
     case SEARCH_TIPS:
-  const keyword = payload; // Palabra clave para buscar
+      const keyword = payload; // Palabra clave para buscar
 
-  // Filtrar los tips que contienen la palabra clave en su nombre
-  const filteredTips = state.allTips.filter(tip => tip.titlePost.toLowerCase().includes(keyword.toLowerCase()));
+      // Filtrar los tips que contienen la palabra clave en su nombre
+      const filteredTips = state.allTips.filter((tip) =>
+        tip.titlePost.toLowerCase().includes(keyword.toLowerCase())
+      );
 
-  return {
-    ...state,
-    tipsSearch: filteredTips
-  };
+      return {
+        ...state,
+        tipsSearch: filteredTips,
+      };
   }
 };
 

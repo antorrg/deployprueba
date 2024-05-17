@@ -15,7 +15,7 @@ const fillTables =async (table, data)=>{
     await dataBulk(CategoryImg, categoriesImages,0);
     await dataBulk(CategoryProvider, categoryProviders,0);
     await dataBulk(CategoryPost, categoryPost,0);
-    //await dataBulk(Post, tipMecanica,0);
+   
 
     const existdatas = await Commerce.findAll();
     if (existdatas.length === 0 ) {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { realtimeDB } from "../../firebase/firebaseConfig";
 import { ref, onValue } from "firebase/database";
 import neumatico from "../../assets/neumatico.gif";
-import style from './styles/Historia.module.css'
+import style from "./styles/Historia.module.css";
 
 //este subcomponente renderiza las imágenes
 const DivImg = ({ index, url, title }) => {
@@ -98,9 +98,7 @@ const Historia = () => {
   }, []);
 
   return (
-
     <div className="container my-3 col-sm-12">
-
       {historyData && Object.keys(historyData).length > 0 ? (
         Object.keys(historyData).map((historyKey, index) =>
           index % 2 === 0 ? (

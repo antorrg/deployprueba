@@ -20,8 +20,8 @@ import { User, Car , sequelize} from "../../db.js";
     // Buscar el usuario dentro de la transacción
     const user = await User.findByPk(idUser, { transaction });
 
-    if (!user) {
-      throw new Error("Usuario no hallado");
+    if (!user) {const error = new Error("Usuario no hallado"); error.status = 500;
+      throw error;
     }
 
     // Validar el vehículo dentro de la transacción
@@ -32,8 +32,8 @@ import { User, Car , sequelize} from "../../db.js";
       transaction,
     });
 
-    if (car) {
-      throw new Error("Vehículo ya existente");
+    if (car) { const error = new Error("Vehículo ya existente"); error.status = 400; 
+      throw error;
     }
 
     // Crear el vehículo dentro de la transacción

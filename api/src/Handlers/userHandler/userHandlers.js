@@ -1,60 +1,62 @@
-import {getUsers,userByQuery, userById, updateUser, deleteUser }from '../../Controllers/userControllers/userControllers.js'
-import resetPassword from '../../Controllers/userControllers/resetPassword.js'
+import us from '../../Controllers/userControllers/index.js'
 
-const getUserHand = async (req, res)=>{
+
+
+export default {
+ getUserHand : async (req, res)=>{
     const {numberId}=req.query;
     try {
         if(numberId){
-            const response = await userByQuery(numberId)
+            const response = await us.userByQuery(numberId)
             res.status(200).json(response)   
         }else{
-            const response = await getUsers()
+            const response = await us.getUsers()
             res.status(200).json(response) 
         }
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(error.status).json({error:error.message})
     }
-}
+},
 
 
-const getDetailUserHand = async (req, res)=>{
+ getDetailUserHand : async (req, res)=>{
     const {id} = req.params;
     try {
-       const response = await userById(id)
+       const response = await us.userById(id)
        res.status(200).json(response) 
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(error.status).json({error:error.message})
     }
-}
+},
 
-const updateUserHand = async (req, res)=>{
+ updateUserHand : async (req, res)=>{
     const {id} = req.params;
     const newData = req.body;
     try {
-       const response = await updateUser(id, newData)
+       const response = await us.updateUser(id, newData)
        res.status(200).json(response) 
     } catch (error) {
-        res.status(500).json({error: error.message})
+        res.status(error.status).json({error:error.message})
     }
-}
+},
 
-const delUserHand = async (req, res)=>{
+ delUserHand : async (req, res)=>{
     const {id} = req.params;
     try {
-       const response = await deleteUser(id)
+       const response = await us.deleteUser(id)
        res.status(200).json(response) 
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(error.status).json({error:error.message})
     }
-}
-const resetUserhand = async(req,res)=>{
+},
+resetUserhand : async(req,res)=>{
     const {id}= req.params;
+    
     try {
-        const response = await resetPassword(id)
+        const response = await us.resetPassword(id)
         res.status(200).json(response) 
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(error.status).json({error:error.message})
     }
+},
 }
-
-export {getUserHand, getDetailUserHand, updateUserHand, resetUserhand, delUserHand}

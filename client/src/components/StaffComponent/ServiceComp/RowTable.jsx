@@ -16,7 +16,7 @@ const RowTable = ({ data }) => {
 
   return (
     <div className={`container row ${style.row}`}>
-      <div className="col-11 row">
+      <div className="col-11 row ">
         <div className="col d-flex justify-content-start align-items-center">
           <i className="bi bi-car-front-fill me-2"></i>
           <span> {att}</span>
@@ -37,7 +37,7 @@ const RowTable = ({ data }) => {
           <span> {date_out}</span>
         </div>
       </div>
-      <div className="col-1 row">
+      <div className="col-1 row ">
         <div className="col d-flex justify-content-start align-items-center">
           <button
             type="button"

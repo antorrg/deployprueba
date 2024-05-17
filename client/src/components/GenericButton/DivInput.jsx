@@ -6,7 +6,9 @@ export default function DivInput({
   handleChange,
   type = "text",
   labelWidth = 100,
+  height = "std",
   arrayOptions = [["", "Selecciona un tipo"]],
+  disabled = false,
 }) {
   // labelWidth es el ancho para el label del formulario a renderizar, para que todos queden iguales y parejos
 
@@ -19,14 +21,20 @@ export default function DivInput({
     }
   `;
 
+  //altura reducida de los Div y su interior
+  const heigthSmall = 25;
+
   if (type === "area") {
     // renderizo un textarea
     return (
-      <div className="my-2">
+      <div className={height === "std" ? "my-2" : "my-0"}>
         <div className="input-group">
           <label
             className="input-group-text"
-            style={{ width: `${labelWidth}px` }}
+            style={{
+              width: `${labelWidth}px`,
+              height: height === "std" ? "" : `${heigthSmall}px`,
+            }}
           >
             {labelText}
           </label>
@@ -36,6 +44,7 @@ export default function DivInput({
             autoComplete="off"
             onChange={(event) => handleChange(event)}
             className="form-control"
+            disabled={disabled}
           />
         </div>
         <div className="text-danger">{error}</div>
@@ -44,12 +53,14 @@ export default function DivInput({
   } else if (type === "select") {
     //renderizo un select con las options
     return (
-      <div className="my-2">
+      <div className={height === "std" ? "my-2" : "my-0"}>
         <div className="input-group">
           <label
-            htmlFor={name}
             className="input-group-text"
-            style={{ width: `${labelWidth}px` }}
+            style={{
+              width: `${labelWidth}px`,
+              height: height === "std" ? "" : `${heigthSmall}px`,
+            }}
           >
             {labelText}
           </label>
@@ -60,6 +71,8 @@ export default function DivInput({
             autoComplete="off"
             onChange={(event) => handleChange(event)}
             className="form-select"
+            disabled={disabled}
+            style={{ height: height === "std" ? "" : `${heigthSmall}px` }}
           >
             {arrayOptions.map((option) => (
               <option key={option[0]} value={option[0]}>
@@ -74,12 +87,15 @@ export default function DivInput({
   } else {
     // renderizo un input type text o number
     return (
-      <div className="my-2">
+      <div className={height === "std" ? "my-2" : "my-0"}>
         <style>{hideScrollbarCSS}</style>
         <div className="input-group">
           <label
             className="input-group-text"
-            style={{ width: `${labelWidth}px` }}
+            style={{
+              width: `${labelWidth}px`,
+              height: height === "std" ? "" : `${heigthSmall}px`,
+            }}
           >
             {labelText}
           </label>
@@ -90,6 +106,8 @@ export default function DivInput({
             autoComplete="off"
             onChange={(event) => handleChange(event)}
             className="form-control"
+            disabled={disabled}
+            style={{ height: height === "std" ? "" : `${heigthSmall}px` }}
           />
         </div>
         <div className="text-danger">{error}</div>

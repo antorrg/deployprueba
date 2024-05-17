@@ -3,12 +3,12 @@ import RowTable from "./RowTable";
 
 const CarryTable = ({ data }) => {
   return (
-    <div className="border rounded d-flex flex-column align-items-center">
+    <div className="d-flex flex-column align-items-center justify-content-center">
       {/* <div className={style.carryList}> */}
       <p className="fs-4">Servicios</p>
-      <div className="mx-auto w-75">
-        {data?.map((row) => (
-          <div className="mx-auto my-2">
+      <div className="container ">
+        {data?.map((row, index) => (
+          <div key={index} className="my-2">
             <RowTable key={row.id} data={row} />
           </div>
         ))}

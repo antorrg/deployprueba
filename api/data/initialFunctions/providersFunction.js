@@ -6,7 +6,7 @@ const providerFunction = async(typeData)=>{
     
         try {
             // Llamar al controlador post aquí, usando los datos del json
-            await providersCreate(data.razonsocial, data.fantasia, data.direccion, data.ciudad, data.telefono, data.email, data.idProvince, data.idCategory);
+            await providersCreate(data.razonsocial, data.contacto, data.fantasia, data.direccion, data.ciudad, data.telefono, data.email, data.otro, data.img, data.idProvince, data.categories);
     
             console.log(`Successfully created: ${data.razonsocial}`);
         } catch (error) {

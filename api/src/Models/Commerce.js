@@ -56,6 +56,10 @@ export default (sequelize) => {
         allowNull: false,
         defaultValue: true,
       },
+      deletedAt:{
+        type: DataTypes.BOOLEAN,
+        defaultValue:false
+      },
     },
     { timestamps: false }
   );

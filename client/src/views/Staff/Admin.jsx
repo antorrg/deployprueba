@@ -13,24 +13,30 @@ const Admin = () => {
   const dispatch = useDispatch();
 
   //Logica para el panel de servicios
-  const [service, setService] = useState(false);
+  // const [service, setService] = useState(false);
   const services = useSelector((state) => state.services);
 
-  const handleToggleServ = () => {
-    setService(true);
-  };
-  const handleHiddeServ = () => {
-    setService(false);
-  };
+  // const handleToggleServ = () => {
+  //   setService(true);
+  // };
+  // const handleHiddeServ = () => {
+  //   setService(false);
+  // };
   //------------------------------------------
 
   useEffect(() => {
-    if (service === true) {
-      dispatch(getAllServices());
-    }
+    dispatch(getAllServices());
     dispatch(getAllUsers());
     dispatch(getAllCars());
-  }, [service]);
+  }, []);
+  // useEffect(() => {
+  //   if (service === true) {
+  //     console.log("me despacho");
+  //     dispatch(getAllServices());
+  //   }
+  //   dispatch(getAllUsers());
+  //   dispatch(getAllCars());
+  // }, [service]);
 
   //! Estado para controlar qué componente hijo se muestra
   const [activeTab, setActiveTab] = useState("usuarios");
@@ -55,7 +61,7 @@ const Admin = () => {
   };
 
   return (
-    <div className="container my-3">
+    <div className="container my-3" style={{ minHeight: "600px" }}>
       <div>
         <ul className="nav nav-tabs">
           <li className="nav-item" style={{ cursor: "pointer" }}>
@@ -97,7 +103,7 @@ const Admin = () => {
 };
 
 export default Admin;
-
+//aquí abajo guardé la lógica anterior de Antonio
 function borrar() {
   return (
     <div className="container ">

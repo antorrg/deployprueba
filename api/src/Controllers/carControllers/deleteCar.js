@@ -3,17 +3,17 @@ import { Car } from "../../db.js";
 //*===============Borrar usuario ==============
 const deleteCar = async (id) => {
   try {
-    if (!id) {throw new Error("No se encontró un id valido");}
+    if (!id) {const error = new Error("No se encontró un id valido"); error.status = 400; throw error;}
     const car = await Car.findByPk(id);
 
-    if (!car) { throw new Error("Vehiculo no encontrado");}
+    if (!car) {const error = new Error("Vehiculo no encontrado"); error.status = 404; throw error;}
     const parsedData = {
       deletedAt: true,
     };
     const carUp = await car.update(parsedData);
     return carUp;
   } catch (error) {
-    console.error("Error al borrar el vehiculo");
+   
     throw error;
   }
   };

@@ -1,15 +1,16 @@
 import {Provider, CategoryProvider, Province, sequelize} from '../../db.js'
+import findFields from './helpers/findFields.js'
 
-const providersCreate = async(razonsocial, fantasia, direccion, ciudad, telefono, email, idProvince, idCategory)=>{
+const providersCreate = async(razonsocial, contacto, fantasia, direccion, ciudad, telefono, email, otro, img, idProvince, categories)=>{
+    let transaction;
     try {
-         let transaction;
          transaction = await sequelize.transaction();
 
-        const categoryFound = await CategoryProvider.findByPk(idCategory, {transaction});
-        if(!categoryFound){throw new Error('CategoryProv. not found')}
 
         const provinceFound = await Province.findByPk(idProvince,{transaction} )
-        if(!provinceFound ){throw new Error('Province not found')}
+        if(!provinceFound ){const error = new Error('Province not found');
+                            error.status = 400;
+                            throw error;}
 
         const providerFound = await Provider.findOne({
             where:{
@@ -17,17 +18,23 @@ const providersCreate = async(razonsocial, fantasia, direccion, ciudad, telefono
                 ciudad:ciudad,
             }, transaction,
         });
-        if(providerFound){throw new Error('This provider already exists')}
+        if(providerFound){const error = new Error('This provider already exists');
+                          error.status = 400;
+                          throw error;}
         const newProvider = await Provider.create({
             razonsocial:razonsocial,
+            contacto: contacto || "",
             fantasia:fantasia,
             direccion:direccion,
             ciudad:ciudad,
             telefono:telefono,
-            email:email,
+            email: email || "",
+            otro: otro || "",
+            img: img || "",
         },{transaction} )
 
-        await categoryFound.addProvider(newProvider, {transaction})
+        const categoryFound = await findFields(CategoryProvider, categories )
+        await newProvider.addCategoryProvider(categoryFound, {transaction})
         await provinceFound.addProvider(newProvider, {transaction})
         await transaction.commit();
         return newProvider;
@@ -40,4 +47,3 @@ const providersCreate = async(razonsocial, fantasia, direccion, ciudad, telefono
 };
 
 export default providersCreate;
-

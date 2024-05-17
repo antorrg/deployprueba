@@ -16,7 +16,7 @@ const deleteCategoryPost = async (req, res) => {
 
     // Verificar si hay Post en la categoría a eliminar
     const postAssociated = await Post.findOne({
-      where: { idCategory: idCategoryPost },
+      where: { CategoryPostIdCategory: idCategoryPost },
     });
 
     //si postAssociated devuelve algo, es que hay algún Post con esa Categoría

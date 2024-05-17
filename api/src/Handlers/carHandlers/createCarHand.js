@@ -1,12 +1,12 @@
-import {createCar}from '../../Controllers/carControllers/index.js'
+import  car from '../../Controllers/carControllers/index.js'
 
 const createCarHand = async (req, res)=>{
     const {idUser, patent, mark, model, year, motorNum, chassisNum, observations, picture}= req.body;
     try {
-       const response = await createCar(idUser, patent, mark, model, year, motorNum, chassisNum, observations, picture)
+       const response = await car.createCar(idUser, patent, mark, model, year, motorNum, chassisNum, observations, picture)
        res.status(201).json(response) 
     } catch (error) {
-        res.status(400).json({error: error.message})
+        res.status(error.status).json({error:error.message})
     }
 }
 

@@ -26,7 +26,8 @@ const userLogin = async (email, password) => {
 
   try {
     if (userf && userf.enable === false) {
-      throw new Error("Usuario bloqueado");
+      const error = new Error('Usuario bloqueado'); errorsr.status = 400; throw error;
+  
     }
     if (userf) {
       const passwordMatch = await bcrypt.compare(password, userf.password);
@@ -38,10 +39,12 @@ const userLogin = async (email, password) => {
         return { data, token };
       } else {
         // Contraseña incorrecta
-        throw new Error("Email o password no validos");
+        const error = new Error('Email o password no validos'); error.status = 400; throw error;
+      
       }
     } else {
-      throw new Error("Usuario no registrado");
+      const error = new Error('Usuario no registrado'); error.status = 400; throw error;
+      
     }
   } catch (error) {
     throw error;
@@ -76,14 +79,15 @@ const userCreate = async (email, name, typeId, numberId, country) => {
           country: country,
         });
         const data = parsedUser(newUser);
-        //console.log("data" + data);
+       // console.log("data" + data);
         //const token = generateToken(newUser);
         return { data };
       } catch (error) {
         throw new Error("Error al crear el usuario");
       }
     } else if (user) {
-      throw new Error("El usuario ya tiene cuenta");
+      const error = new Error('El usuario ya tiene cuenta'); error.status = 400; throw error;
+      
     }
   } catch (error) {
     console.error("Error al iniciar sesión:", error);

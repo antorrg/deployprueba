@@ -4,7 +4,7 @@ import updateCar from './updateCar.js'
 import updateDomCar from './updateDomCar.js'
 import deleteCar from './deleteCar.js'
 
-export {
+export default {
     createCar,
     getCar,
     getByQuery,

@@ -2,13 +2,13 @@ import { Service } from "../../db.js";
 
 const updateService = async(id, newData)=>{
     try {
-        if(!id){
-            throw new Error('No se encontró un id valido');
+        if(!id){const error = new Error('No se encontro un id valido'); error.status = 400; throw error;
+           
         }
         const user = await Service.findByPk(id);
     
-        if (!user) {
-          throw new Error("Usuario no encontrado");
+        if (!user) {const error = new Error('Usuario no encontrado'); error.status = 400; throw error;
+         
         }
         if(!newData.password){
           const parsedData = {
@@ -39,4 +39,4 @@ const updateService = async(id, newData)=>{
       }
 }
 
-export default updateService;
+export default updateService

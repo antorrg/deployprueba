@@ -142,13 +142,13 @@ const EditWindow = ({ onClose, userEdit }) => {
         <div className="row">
           {authenticated && user.role === 0 ? (
             <>
-              <div className="col">
+              <div className="col my-1">
                 <GenericButton
                   onClick={resetPassword}
                   buttonText="Reset Password"
                 />
               </div>
-              <div className="col">
+              <div className="col my-1">
                 <GenericButton
                   onClick={deleteUser}
                   buttonText={"Borrar Usuario"}
@@ -156,7 +156,7 @@ const EditWindow = ({ onClose, userEdit }) => {
               </div>
             </>
           ) : null}
-          <div className="col">
+          <div className="col my-1">
             <GenericButton onClick={onClose} buttonText="Cancelar" />
           </div>
           {/* </div> */}

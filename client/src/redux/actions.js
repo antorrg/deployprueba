@@ -25,6 +25,30 @@ export const GET_ORDER_TIPS = "GET_ORDER_TIPS";
 export const STATE_FILTER_TIPS = "STATE_FILTER_TIPS";
 export const OPTION_FILTER = "OPTION_FILTER";
 export const SEARCH_TIPS = "SEARCH_TIPS";
+export const ALL_PROVIDERS = "ALL_PROVIDERS";
+
+//%%%%%%%%%%% Providers %%%%%%%%%%%%%%%%%%%%%%%%%%
+export const getAllProviders = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios("/providers");
+      return dispatch({
+        type: ALL_PROVIDERS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error("Error al obtener los Proveedores");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No pudimos mostrar los Proveedores",
+        //footer: '<a href="#">Why do I have this issue?</a>',
+      });
+    }
+  };
+};
+
+//%%%%%%%%%%% End Providers %%%%%%%%%%%%%%%%%%%%%%%
 
 //?%%%%%%%%%%% commerce %%%%%%%%%%%%%%%%%%%%%%%%%%
 export const isMyCommerce = () => {
@@ -446,14 +470,10 @@ export const optionFiltered = (category, order) => {
 export const searchTips = (value) => {
   return async (dispatch) => {
     try {
-      return dispatch(
-        {
-          type: SEARCH_TIPS,
-          payload: value,
-        }
-      )
-    } catch (error) {
-      
-    }
-  }
-}
+      return dispatch({
+        type: SEARCH_TIPS,
+        payload: value,
+      });
+    } catch (error) {}
+  };
+};

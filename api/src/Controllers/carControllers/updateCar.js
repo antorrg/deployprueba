@@ -2,15 +2,15 @@ import { User, Car , sequelize} from "../../db.js";
 
 //*======= Actualizar vehiculo ==================
 const updateCar = async (id, newData) => {
-  console.log('hasta el controller va bien ', newData )
+  //console.log('hasta el controller va bien ', newData )
     try {
       if (!id) {
-        throw new Error("No se encontró un id valido");
+        const error = new Error("No se encontró un id valido"); error.status = 400; throw error;
       }
       const car = await Car.findByPk(id);
   
       if (!car) {
-        throw new Error("Vehiculo no encontrado");
+        const error = new Error("Vehiculo no encontrado"); error.status = 404; throw error;
       }
       const parsedData = {
         patent: newData.patent,
@@ -27,7 +27,7 @@ const updateCar = async (id, newData) => {
       const carUp = await car.update(parsedData);
       return carUp;
     } catch (error) {
-      console.error("Error al actualizar el vehiculo");
+      //console.error("Error al actualizar el vehiculo");
       throw error;
     }
   };

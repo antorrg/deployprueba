@@ -10,6 +10,7 @@ const getService = async () => {
             include: [{ model: Car, attributes: ['id', 'patent'] }]
         });
         const data = response;
+        if(!data){const error = new Error('Service not found'); error.status = 400; throw error;}
         if(data.length===0){return emptyResServ();};
         return data;
     } catch (error) {
@@ -46,7 +47,7 @@ const serviceById = async (id)=>{
             include: [{ model: Car, attributes: ['id', 'patent'] }]
         });
         const data = response;
-        if(!data){throw new Error('Service not found!')}
+        if(!data){const error = new Error('Service not found'); error.status = 400; throw error;}
         return data;
     } catch (error) {
         throw error;

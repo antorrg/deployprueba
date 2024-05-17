@@ -12,8 +12,8 @@ const Navbar = () => {
   const { authenticated, user, logout } = useAuth();
   const { pathname } = useLocation();
   const navigate = useNavigate();
-    //Logica para hacer que aparezca ingresar en la hamburguesa:
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  //Logica para hacer que aparezca ingresar en la hamburguesa:
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const admin = user?.role === 0 ? true : false;
   const noRoutes =
@@ -204,7 +204,7 @@ const Navbar = () => {
                 />
               )}
             </li>
-            {authenticated ? null : (
+             {authenticated ? null : (
               <>
                 <li className="nav-item" data-bs-dismiss="offcanvas">
                   <NavLink to="/login">

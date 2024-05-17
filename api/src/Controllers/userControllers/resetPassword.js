@@ -7,12 +7,13 @@ const {DEFAULT_PASS} = process.env;
 const updatePassword = async(id, bodys)=>{
     try {
         if(!id){
-            throw new Error('No se encontró un id valido')
+          const error = new Error('No se encontró un id valido'); error.status = 400; throw error;
+          
           }
           const user = await User.findByPk(id);
           
           if (!user) {
-            throw new Error("Usuario no encontrado");
+            const error = new Error('Usuario no encontrado'); error.status = 400; throw error;
           }
           
           const hashedPassword = await bcrypt.hash(`${DEFAULT_PASS}`, 10);

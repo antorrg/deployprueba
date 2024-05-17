@@ -1,12 +1,12 @@
-import {Router} from 'express';
-import { createServiceHand, getServiceHand, getServiceIdHand, updateServiceHand, delServiceHand} from '../Handlers/serviceHandlers/serviceHand.js'
+import {Router} from 'express'
+import sv from '../Handlers/serviceHandlers/serviceHand.js'
+import m from '../Utils/middleIds.js';
+const serviceRouter=Router();
 
-const serviceRouter = Router();
-
-serviceRouter.get('/service', getServiceHand);
-serviceRouter.get('/service/:id', getServiceIdHand);
-serviceRouter.post('/service', createServiceHand);
-serviceRouter.put('/service/:id', updateServiceHand);
-serviceRouter.delete('/service/:id', delServiceHand);
+serviceRouter.get('/service', sv.getServiceHand);
+serviceRouter.get('/service/:id', m.middUuid, sv.getServiceIdHand);
+serviceRouter.post('/service', sv.createServiceHand);
+serviceRouter.put('/service/:id', m.middUuid,sv.updateServiceHand);
+serviceRouter.delete('/service/:id', m.middUuid, sv.delServiceHand);
 
 export default serviceRouter;

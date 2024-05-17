@@ -28,3 +28,10 @@
 
   overflow: auto;
 }
+
+@media only screen and (max-width: 965px) {
+  .formContainer {
+    height: 65%;
+    top: 37%;
+  }
+}

@@ -1,10 +1,11 @@
 import { CategoryProvider, Provider } from "../../db.js";
 
+
 const deleteCategoryProvider = async (req, res) => {
   const { id } = req.params;
   const { order } = req.query;
 
-  if (!id) {
+  if (!idA) {
     return res.status(400).json({ error: "Se requiere id de categoría" });
   }
 

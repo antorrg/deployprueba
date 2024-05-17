@@ -11,9 +11,8 @@ const compare = async(id, password)=>{
         },
       });
       try {
-        if (userf && userf.enable === false){
-          throw new Error("Usuario bloqueado");
-        }
+        if (userf && userf.enable === false){const error = new Error('Usuario bloqueado'); error.status = 400; throw error;}
+      
         if (userf) {
           const passwordMatch = await bcrypt.compare(password, userf.password);
           if (passwordMatch) {
@@ -22,10 +21,12 @@ const compare = async(id, password)=>{
             return data;
           } else {
             // Contraseña incorrecta
-            throw new Error("Password no valido");
+            const error = new Error('Password no valido'); error.status = 400; throw error;
+            
           }
         } else {
-          throw new Error("Usuario no registrado");
+          const error = new Error('Usuario no registrado'); error.status = 404; throw error;
+         
         }
       } catch (error) {
         throw error;

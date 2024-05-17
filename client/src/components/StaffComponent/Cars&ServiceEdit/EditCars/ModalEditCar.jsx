@@ -111,7 +111,7 @@ const ModalEditCar = ({ onClose, carEdit }) => {
         // style={{ alignSelf: "flex-center" }}
       >
         {changeOwner ? (
-          <div className="col">
+          <div className="col my-1">
             <GenericButton
               onClick={notOwnerChange}
               buttonText="Editar Vehículo"
@@ -119,14 +119,14 @@ const ModalEditCar = ({ onClose, carEdit }) => {
           </div>
         ) : (
           <>
-            <div className="col">
+            <div className="col my-1">
               <Edition
                 allowedRoles={[0]}
                 onClick={ownerChange}
                 text={"Transferir"}
               />
             </div>
-            <div className="col">
+            <div className="col my-1">
               <Edition
                 allowedRoles={[0]}
                 onClick={delCarHandle}
@@ -135,7 +135,7 @@ const ModalEditCar = ({ onClose, carEdit }) => {
             </div>
           </>
         )}
-        <div className="col">
+        <div className="col my-1">
           <GenericButton onClick={onClose} buttonText="Cancelar" />
         </div>
       </div>
