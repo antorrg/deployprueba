@@ -26,7 +26,7 @@ const userLogin = async (email, password) => {
 
   try {
     if (userf && userf.enable === false) {
-      const error = new Error('Usuario bloqueado'); errorsr.status = 400; throw error;
+      const error = new Error('Usuario bloqueado'); error.status = 400; throw error;
   
     }
     if (userf) {
