@@ -1,4 +1,4 @@
-import {userCreate} from '../../src/Controllers/userControllers/userLogin.js'
+import serv from '../../src/Controllers/userServices.js'
 
 const usersFunction = async(typeData)=>{
     for (let i = 0; i <typeData.length; i++) {
@@ -6,7 +6,7 @@ const usersFunction = async(typeData)=>{
     
         try {
             // Llamar al controlador post aquí, usando los datos del json
-            await userCreate(data.email, data.name, data.typeId, data.numberId, data.country);
+            await serv.userCreate(data.email, data.name, data.typeId, data.numberId, data.country);
     
             console.log(`Successfully created: ${data.name}`);
         } catch (error) {
