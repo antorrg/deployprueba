@@ -9,18 +9,18 @@ import 'react-toastify/dist/ReactToastify.css';
       const data = error.response.data;
       if (status === 400) {
         // Acceso no autorizado
-        toast.error(`Error ${status} Petición fallida.`, data);
+        toast.error(`Error ${status} ${data}`);
       } else if (status === 401) {
         // Acceso no autorizado
-        toast.error('Acceso no autorizado. Debes iniciar sesión.');
+        toast.error(`Error ${status}: ${data}`);
       } else if (status === 404) {
         // Recurso no encontrado
-        toast.error('Recurso no encontrado.');
+        toast.error(`Error ${status}: ${data}`);
       } else if (status === 403){
-        toast.error('Prohibido, no tiene permisos para esta accion.');
+        toast.error(`Error ${status}: ${data}`);
       }else {
         // Otro error del servidor
-        toast.error(`Error del servidor: ${status}`, data);
+        toast.error(`Error ${status}: ${data}`);
         //alert('Ocurrió un error en el servidor. Por favor, inténtalo de nuevo más tarde.');
       }
     } else if (error.request) {

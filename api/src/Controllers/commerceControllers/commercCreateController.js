@@ -1,13 +1,15 @@
 import {Commerce, Province, sequelize} from '../../db.js';
+import { throwError } from '../../Utils/errors/errorsHandlers.js';
 
-const commerceCreate = async(razonsocial, fantasia, direccion, ciudad, idProvince, telefono, celular, email,instagram, facebook, otro)=>{
+export default {
+commerceCreate : async(razonsocial, fantasia, direccion, ciudad, idProvince, telefono, celular, email,instagram, facebook, otro)=>{
     try { 
         let transaction;
         // Iniciar una transacción
         transaction = await sequelize.transaction();
 
         const provFound = await Province.findByPk(idProvince, {transaction})
-        if(!provFound){throw new Error('Esta provincia no existe')};
+        if(!provFound){throwError('Esta provincia no existe', 404)};
 
         const datafound = await Commerce.findOne({
             where:{
@@ -15,7 +17,7 @@ const commerceCreate = async(razonsocial, fantasia, direccion, ciudad, idProvinc
                 otro: otro,
             },transaction,
         });
-        if(datafound){throw new Error('Este comercio o filial ya existe')}
+        if(datafound){throwError('Este comercio o filial ya existe', 400)}
         const newdata = await Commerce.create({
            razonsocial:razonsocial,
            fantasia:fantasia,
@@ -31,7 +33,6 @@ const commerceCreate = async(razonsocial, fantasia, direccion, ciudad, idProvinc
 
        await provFound.addCommerce(newdata, {transaction})
        await transaction.commit();
-
        return newdata
         
     } catch (error) {
@@ -42,5 +43,4 @@ const commerceCreate = async(razonsocial, fantasia, direccion, ciudad, idProvinc
     }
 }
 
-export default
-    commerceCreate
+}

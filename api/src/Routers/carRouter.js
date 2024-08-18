@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import car from '../Handlers/carHandlers/index.js'
+import car from '../Handlers/carControllers.js'
 import m from '../Utils/middleIds.js';
 import { verifyToken, checkRole } from '../Utils/validation/index.js'
 

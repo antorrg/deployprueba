@@ -6,7 +6,6 @@ const middleCreate = async (req, res, next)=>{
     if(!email){return res.status(400).json({error: "missing email"})};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {return res.status(400).json({ error: "invalid email format" });}
-
     if(!name){return res.status(400).json({error: "missing name"})};
     if(!typeId){return res.status(400).json({error: "missing user identification"})};
     if(!numberId){return res.status(400).json({error: "missing user identification"})};

@@ -24,7 +24,7 @@ const createUser = async(userData,openCreateCar)=>{
       const user = response.data.data;
       const idUser =user.id
       sessionStorage.setItem('idUser',idUser)
-       showSuccess('User created successfully')
+       showSuccess('Usuario creado exitosamente')
        openCreateCar();
         //console.log(user)
         return user;
@@ -51,7 +51,7 @@ const loginUser = async(userData,login)=>{
           //console.log("Token almacenado en localStorage:", localStorage.getItem('validToken'));
       
           
-            showSuccess('Login sucessfully')
+            showSuccess('Verificacion exitosa!')
             //console.log(token)
             //console.log(user)
             
@@ -59,8 +59,8 @@ const loginUser = async(userData,login)=>{
         }
        
         } catch (error) {
-          showError('Login fallido')
-          //HandlError(error);
+          showError('Verificacion fallida')
+          HandlError(error)
           throw error;
         }
                

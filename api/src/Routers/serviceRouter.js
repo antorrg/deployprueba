@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import sv from '../Handlers/serviceHandlers/serviceHand.js'
+import sv from '../Handlers/serviceControllers.js'
 import m from '../Utils/middleIds.js';
 const serviceRouter=Router();
 

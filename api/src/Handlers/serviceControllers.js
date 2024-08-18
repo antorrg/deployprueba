@@ -1,21 +1,18 @@
-import serv from '../../Controllers/serviceControllers/index.js'
+import { catchError } from '../Utils/errors/errorsHandlers.js';
+import serv from '../Controllers/serviceFunctions.js'
 
 export default {
 
- createServiceHand : async (req, res)=>{
+ createServiceHand : catchError(async (req, res)=>{
     const {type, detail, date_in, date_out, observations, picture, carId}= req.body;
-    try {
        const response = await serv.createService(type, detail, date_in, date_out, observations, picture, carId)
        res.status(201).json(response) 
-    } catch (error) {
-        res.status(error.status).json({error:error.message})
-    }
-},
+    
+}),
 //=====================================================
 
- getServiceHand : async (req, res)=>{
+ getServiceHand : catchError(async (req, res)=>{
     const {search}=req.query;
-    try {
         if(search){
             const response = await serv.getServiceByQuery(search)
             res.status(200).json(response) 
@@ -23,47 +20,33 @@ export default {
        const response = await serv.getService()
        res.status(200).json(response) 
        }
-    } catch (error) {
-        res.status(error.status).json({error:error.message})
-    }
-},
+}),
 
 //================================================================
 
-
- getServiceIdHand : async (req, res)=>{
+ getServiceIdHand : catchError(async (req, res)=>{
     const {id} = req.params;
-    try {
        const response = await serv.serviceById(id)
        res.status(200).json(response) 
-    } catch (error) {
-        res.status(error.status).json({error:error.message})
-    }
-},
+   
+}),
 
 //=====================================================================
 
- updateServiceHand : async (req, res)=>{
+ updateServiceHand : catchError(async (req, res)=>{
     const {id} = req.params;
     const newData = req.body;
-    try {
        const response = await serv.updateService(id, newData)
        res.status(200).json(response) 
-    } catch (error) {
-        res.status(error.status).json({error:error.message})
-    }
-},
-
+   
+}),
 
 //==============================================================
 
- delServiceHand : async (req, res)=>{
+ delServiceHand : catchError(async (req, res)=>{
     const {id} = req.params;
-    try {
        const response = await serv.deleteService(id)
        res.status(200).json(response) 
-    } catch (error) {
-        res.status(error.status).json({error:error.message})
-    }
-},
+   
+}),
 };

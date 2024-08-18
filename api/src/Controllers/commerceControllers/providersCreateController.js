@@ -1,16 +1,15 @@
 import {Provider, CategoryProvider, Province, sequelize} from '../../db.js'
 import findFields from './helpers/findFields.js'
+import { throwError } from '../../Utils/errors/errorsHandlers.js';
 
-const providersCreate = async(razonsocial, contacto, fantasia, direccion, ciudad, telefono, email, otro, img, idProvince, categories)=>{
+
+export default {
+providersCreate : async(razonsocial, contacto, fantasia, direccion, ciudad, telefono, email, otro, img, idProvince, categories)=>{
     let transaction;
     try {
          transaction = await sequelize.transaction();
-
-
         const provinceFound = await Province.findByPk(idProvince,{transaction} )
-        if(!provinceFound ){const error = new Error('Province not found');
-                            error.status = 400;
-                            throw error;}
+        if(!provinceFound ){throwError('Province not found', 404)}
 
         const providerFound = await Provider.findOne({
             where:{
@@ -18,9 +17,7 @@ const providersCreate = async(razonsocial, contacto, fantasia, direccion, ciudad
                 ciudad:ciudad,
             }, transaction,
         });
-        if(providerFound){const error = new Error('This provider already exists');
-                          error.status = 400;
-                          throw error;}
+        if(providerFound){throwError('This provider already exists', 400)}
         const newProvider = await Provider.create({
             razonsocial:razonsocial,
             contacto: contacto || "",
@@ -44,6 +41,6 @@ const providersCreate = async(razonsocial, contacto, fantasia, direccion, ciudad
         }
         throw error;
     }
-};
+},
 
-export default providersCreate;
+}
