@@ -10,6 +10,9 @@ yarn-error.log*
 # Optional npm cache directory
 .npm
 .env
+.env.production
+.env.development
+.env.test
 
 # Optional eslint cache
 .eslintcache
