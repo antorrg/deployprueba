@@ -14,7 +14,7 @@ import app from "./src/server.js";
 import { sequelize } from "./src/db.js";
 import { appUserTable } from "./src/Utils/SUcreate-protect/index.js";
 import fillTables from "./data/initialFunctions/fillTables.js";
-import env from './src/envConfig.js'
+import env from './src/envConfig.js';
 
 async function serverBootstrap(){
   try {
