@@ -22,6 +22,8 @@ yarn-error.log*
 
 # Output directory
 /dist
+/serverAssets
+!/serverAssets/.gitkeep
 
 # IDE files
 .idea
