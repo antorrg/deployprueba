@@ -1,24 +1,24 @@
-import { DataTypes } from "sequelize";
+import { DataTypes } from 'sequelize'
 
 export default (sequelize) => {
   sequelize.define(
-    "Province",
+    'Province',
     {
       idProvince: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        unique: true,
+        unique: true
       },
       descProvince: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
-      deletedAt:{
+      deletedAt: {
         type: DataTypes.BOOLEAN,
-        defaultValue:false
-      },
+        defaultValue: false
+      }
     },
     { timestamps: false }
-  );
-};
+  )
+}

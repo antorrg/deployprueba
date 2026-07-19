@@ -1,35 +1,35 @@
-import { DataTypes } from "sequelize";
+import { DataTypes } from 'sequelize'
 
 export default (sequelize) => {
   sequelize.define(
-    "ImagesConfig",
+    'ImagesConfig',
     {
       idImg: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
       },
       nameImg: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       urlImg: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       otherStringImg: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       otherIntegerImg: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: true
       },
-      deletedAt:{
+      deletedAt: {
         type: DataTypes.BOOLEAN,
-        defaultValue:false
-      },
+        defaultValue: false
+      }
     },
     { timestamps: false }
-  );
-};
+  )
+}

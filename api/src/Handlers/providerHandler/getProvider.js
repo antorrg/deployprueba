@@ -1,82 +1,81 @@
-import { Provider, CategoryProvider, Province } from "../../db.js";
-import { Op } from "sequelize";
-import parseProvider from "./helpers/parseProviders.js";
-
+import { Provider, CategoryProvider, Province } from '../../db.js'
+import { Op } from 'sequelize'
+import parseProvider from './helpers/parseProviders.js'
 
 const getProvider = async (req, res) => {
   const { searchRazon, searchFantasia, searchContacto, filterCategory, order } =
-    req.query;
+    req.query
 
-  let data;
+  let data
 
   try {
     if (searchRazon) {
-      //ejemplo http://localhost:3001/allproviders?searchRazon=blue
+      // ejemplo http://localhost:3001/allproviders?searchRazon=blue
       data = await Provider.findAll({
         where: {
           razonsocial: {
-            [Op.iLike]: `%${searchRazon}%`, // Búsqueda de texto parcial
-          },
+            [Op.iLike]: `%${searchRazon}%` // Búsqueda de texto parcial
+          }
         },
-        order: [["razonsocial", order || "ASC"]],
+        order: [['razonsocial', order || 'ASC']],
         include: [
-          { model: CategoryProvider, attributes: ["descCategory"] },
-          { model: Province, attributes: ["descProvince"] },
-        ],
-      });
+          { model: CategoryProvider, attributes: ['descCategory'] },
+          { model: Province, attributes: ['descProvince'] }
+        ]
+      })
     } else if (searchFantasia) {
-      //ejemplo de queries:  http://localhost:3001/allproviders?order=DESC&searchFantasia=bat
+      // ejemplo de queries:  http://localhost:3001/allproviders?order=DESC&searchFantasia=bat
       data = await Provider.findAll({
         where: {
           fantasia: {
-            [Op.iLike]: `%${searchFantasia}%`, // Búsqueda de texto parcial
-          },
+            [Op.iLike]: `%${searchFantasia}%` // Búsqueda de texto parcial
+          }
         },
-        order: [["fantasia", order || "ASC"]],
+        order: [['fantasia', order || 'ASC']],
         include: [
-          { model: CategoryProvider, attributes: ["descCategory", "idCategory"] },
-          { model: Province, attributes: ["descProvince"] },
-        ],
-      });
+          { model: CategoryProvider, attributes: ['descCategory', 'idCategory'] },
+          { model: Province, attributes: ['descProvince'] }
+        ]
+      })
     } else if (searchContacto) {
       data = await Provider.findAll({
         where: {
           contacto: {
-            [Op.iLike]: `%${searchContacto}%`, // Búsqueda de texto parcial
-          },
+            [Op.iLike]: `%${searchContacto}%` // Búsqueda de texto parcial
+          }
         },
-        order: [["contacto", order || "ASC"]],
+        order: [['contacto', order || 'ASC']],
         include: [
-          { model: CategoryProvider, attributes: ["descCategory", "idCategory"] },
-          { model: Province, attributes: ["descProvince"] },
-        ],
-      });
+          { model: CategoryProvider, attributes: ['descCategory', 'idCategory'] },
+          { model: Province, attributes: ['descProvince'] }
+        ]
+      })
     } else if (filterCategory) {
       data = await Provider.findAll({
         where: {
-          idCategory: filterCategory,
+          idCategory: filterCategory
         },
-        order: [["razonsocial", order || "ASC"]],
+        order: [['razonsocial', order || 'ASC']],
         include: [
-          { model: CategoryProvider, attributes: ["descCategory", "idCategory"] },
-          { model: Province, attributes: ["descProvince"] },
-        ],
-      });
+          { model: CategoryProvider, attributes: ['descCategory', 'idCategory'] },
+          { model: Province, attributes: ['descProvince'] }
+        ]
+      })
     } else {
       data = await Provider.findAll({
-        order: [["razonsocial", order || "ASC"]],
+        order: [['razonsocial', order || 'ASC']],
         include: [
-          { model: CategoryProvider, attributes: ["descCategory"] , through: { attributes: [] }},
-          { model: Province, attributes: ["descProvince"]},
-        ],
-      });
+          { model: CategoryProvider, attributes: ['descCategory'], through: { attributes: [] } },
+          { model: Province, attributes: ['descProvince'] }
+        ]
+      })
     }
     const dataClean = parseProvider(data, true)
 
-    res.status(200).json(dataClean);
+    res.status(200).json(dataClean)
   } catch (error) {
-    res.status(400).json({ error: "Error al obtener los Proveedores" });
+    res.status(400).json({ error: 'Error al obtener los Proveedores' })
   }
-};
+}
 
-export default getProvider;
+export default getProvider

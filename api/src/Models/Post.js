@@ -1,50 +1,50 @@
-import { DataTypes } from "sequelize";
+import { DataTypes } from 'sequelize'
 
 export default (sequelize) => {
   sequelize.define(
-    "Post",
+    'Post',
     {
       idPost: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
       },
       datePost: {
         type: DataTypes.DATEONLY,
-        allowNull: true,
+        allowNull: true
       },
       titlePost: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
       textPost: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: false
       },
       imgPost: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true,
+        allowNull: true
       },
       published: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false,
+        defaultValue: false
       },
       viewFavPost: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
-        defaultValue: false,
+        defaultValue: false
       },
       other: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
-      deletedAt:{
+      deletedAt: {
         type: DataTypes.BOOLEAN,
-        defaultValue:false
-      },
+        defaultValue: false
+      }
     },
     { timestamps: true }
-  );
-};
+  )
+}

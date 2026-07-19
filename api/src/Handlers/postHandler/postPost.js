@@ -1,9 +1,9 @@
-import { Post, CategoryPost } from "../../db.js";
-import createPost from "../../Controllers/commerceControllers/createPostController.js";
+import { Post, CategoryPost } from '../../db.js'
+import createPost from '../../Controllers/commerceControllers/createPostController.js'
 
 const postPost = async (req, res) => {
-  console.log(req.body);
-  //datePost usamos la fecha actual
+  console.log(req.body)
+  // datePost usamos la fecha actual
   const {
     datePost,
     titlePost,
@@ -12,28 +12,28 @@ const postPost = async (req, res) => {
     published,
     viewFavPost,
     other,
-    idCategory,
-  } = req.body;
+    idCategory
+  } = req.body
   if (!titlePost || !textPost || !idCategory) {
-    return res.status(400).json({ error: "Faltan datos para el Post" });
+    return res.status(400).json({ error: 'Faltan datos para el Post' })
   }
 
   try {
     // Verificar si ya existe un Post con el mismo title
     const existingPost = await Post.findOne({
-      where: { titlePost: titlePost },
-    });
+      where: { titlePost }
+    })
     // Si ya existe, devolver un error indicando que hay un Post con ese título
     if (existingPost) {
       return res
         .status(400)
-        .json({ error: "Existe un Post con el mísmo título" });
+        .json({ error: 'Existe un Post con el mísmo título' })
     }
 
-    //verificar si el idCategory existe en las Categorias, y si no devolver error
-    const categorySelected = await CategoryPost.findByPk(idCategory);
+    // verificar si el idCategory existe en las Categorias, y si no devolver error
+    const categorySelected = await CategoryPost.findByPk(idCategory)
     if (!categorySelected) {
-      return res.status(400).json({ error: "No existe la Categoría" });
+      return res.status(400).json({ error: 'No existe la Categoría' })
     }
 
     //! Crear el post (ver las imagenes a guardar)
@@ -46,7 +46,7 @@ const postPost = async (req, res) => {
       imgPost,
       idCategory,
       other
-    );
+    )
 
     // Post.create({
     //   datePost: new Date(),
@@ -58,14 +58,14 @@ const postPost = async (req, res) => {
     //   other: other ?? "",
     //   idCategory,
     // });
-    //devolvemos SOLO el Post creado, para reordenarlos usar método GET correspondiente
+    // devolvemos SOLO el Post creado, para reordenarlos usar método GET correspondiente
     // const data = await Post.findAll();
-    res.status(201).json(createdPost);
+    res.status(201).json(createdPost)
   } catch (error) {
-    console.error(error);
+    console.error(error)
 
-    res.status(500).json({ error: "Error al crear el Tip" });
+    res.status(500).json({ error: 'Error al crear el Tip' })
   }
-};
+}
 
-export default postPost;
+export default postPost

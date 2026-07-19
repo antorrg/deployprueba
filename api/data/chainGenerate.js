@@ -1,8 +1,8 @@
-import crypto from 'crypto';
+import crypto from 'crypto'
 
 const generateSecret = () => {
-  return crypto.randomBytes(32).toString('hex');
-};
+  return crypto.randomBytes(32).toString('hex')
+}
 
-const secret = generateSecret();
-console.log(`La cadena secreta generada es: ${secret}`);
+const secret = generateSecret()
+console.log(`La cadena secreta generada es: ${secret}`)

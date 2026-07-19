@@ -1,11 +1,9 @@
-
-
 const dataParsed = (data, isSingle) => {
-    return isSingle ? data.map((dat)=> parseInt(dat, 10))
-                   : parseInt(data, 10);
-       }
-   
- 
-export default dataParsed;
+  return isSingle
+    ? data.map((dat) => parseInt(dat, 10))
+    : parseInt(data, 10)
+}
 
-//si la info esta en un array seria: dataParsed(xxx, true)
+export default dataParsed
+
+// si la info esta en un array seria: dataParsed(xxx, true)

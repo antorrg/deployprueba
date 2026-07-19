@@ -1,66 +1,66 @@
-import { DataTypes } from "sequelize";
+import { DataTypes } from 'sequelize'
 
 export default (sequelize) => {
   sequelize.define(
-    "Commerce",
+    'Commerce',
     {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
       },
       razonsocial: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
       fantasia: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
       direccion: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       ciudad: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       telefono: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       celular: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       instagram: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       facebook: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       otro: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       isMyCommerce: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true,
+        defaultValue: true
       },
-      deletedAt:{
+      deletedAt: {
         type: DataTypes.BOOLEAN,
-        defaultValue:false
-      },
+        defaultValue: false
+      }
     },
     { timestamps: false }
-  );
-};
+  )
+}

@@ -1,6 +1,6 @@
 # HELP-SERVER
 
-Proyecto con Base de datos PostgresSQL. Iniciado el día 06/03/2024
+Proyecto con Base de datos PostgresSQL. Iniciado el día 06/03/2024. Refactorizada el día 19/07/2026
 
 Estas son las rutas y sus respectivas caracteristicas:
 

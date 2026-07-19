@@ -1,5 +1,5 @@
-import { Commerce, Province, sequelize } from "../../db.js";
-import { Op } from "sequelize";
+import { Commerce, Province, sequelize } from '../../db.js'
+import { Op } from 'sequelize'
 
 const postCommerce = async (req, res) => {
   const {
@@ -13,8 +13,8 @@ const postCommerce = async (req, res) => {
     facebook,
     email,
     otro,
-    idProvince,
-  } = req.body;
+    idProvince
+  } = req.body
 
   if (
     !razonsocial ||
@@ -24,33 +24,33 @@ const postCommerce = async (req, res) => {
     !telefono ||
     !idProvince
   ) {
-    return res.status(400).json({ error: "Faltan datos para el Comercio" });
+    return res.status(400).json({ error: 'Faltan datos para el Comercio' })
   }
 
   try {
     // Convertir razonsocial a minúsculas antes de realizar la búsqueda
-    const razonsocialLowerCase = sequelize.fn("LOWER", razonsocial);
+    const razonsocialLowerCase = sequelize.fn('LOWER', razonsocial)
 
     // Verificar si ya existe otro Comercio con la misma razonsocial
     const existingCommerce = await Commerce.findOne({
       where: sequelize.where(
-        sequelize.fn("LOWER", sequelize.col("razonsocial")),
+        sequelize.fn('LOWER', sequelize.col('razonsocial')),
         Op.iLike,
         razonsocialLowerCase
-      ),
-    });
+      )
+    })
 
     // Si ya existe, devolver un error
     if (existingCommerce) {
       return res
         .status(400)
-        .json({ error: "Existe un Comercio con la misma razón social" });
+        .json({ error: 'Existe un Comercio con la misma razón social' })
     }
 
-    //verificar si el idProvince existe en las Provincias, y si no devolver error
-    const provinceSelected = await Province.findByPk(idProvince);
+    // verificar si el idProvince existe en las Provincias, y si no devolver error
+    const provinceSelected = await Province.findByPk(idProvince)
     if (!provinceSelected) {
-      return res.status(400).json({ error: "No existe la Provincia" });
+      return res.status(400).json({ error: 'No existe la Provincia' })
     }
     //! Crear el post, isMyCommerce se marcará como true
     const createdCommerce = await Commerce.create({
@@ -59,37 +59,37 @@ const postCommerce = async (req, res) => {
       direccion,
       ciudad,
       telefono,
-      celular: celular || "",
-      email: email || "",
-      otro: otro || "",
-      instagram: instagram || "",
-      facebook: facebook || "",
+      celular: celular || '',
+      email: email || '',
+      otro: otro || '',
+      instagram: instagram || '',
+      facebook: facebook || '',
       idProvince,
-      isMyCommerce: true,
-    });
+      isMyCommerce: true
+    })
 
-    //!los demás comercios creados si los hay, se marcarán como isMyCommerce = false
+    //! los demás comercios creados si los hay, se marcarán como isMyCommerce = false
     await Commerce.update(
       { isMyCommerce: false },
       {
         where: {
           id: {
-            [Op.ne]: createdCommerce.id, // Excluir el registro creado recientemente
-          },
-        },
+            [Op.ne]: createdCommerce.id // Excluir el registro creado recientemente
+          }
+        }
       }
-    );
+    )
 
-    //devolvemos SOLO el Comercio creado
+    // devolvemos SOLO el Comercio creado
     const data = await Commerce.findOne({
       where: { id: createdCommerce.id },
-      include: [{ model: Province, attributes: ["descProvince"] }],
-    });
-    res.status(201).json(data);
+      include: [{ model: Province, attributes: ['descProvince'] }]
+    })
+    res.status(201).json(data)
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error al crear el Comercio" });
+    console.error(error)
+    res.status(500).json({ error: 'Error al crear el Comercio' })
   }
-};
+}
 
-export default postCommerce;
+export default postCommerce

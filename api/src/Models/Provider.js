@@ -1,56 +1,56 @@
-import { DataTypes } from "sequelize";
+import { DataTypes } from 'sequelize'
 
 export default (sequelize) => {
   sequelize.define(
-    "Provider",
+    'Provider',
     {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
       },
       razonsocial: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
       fantasia: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       contacto: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       direccion: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       ciudad: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       telefono: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       otro: {
         type: DataTypes.TEXT,
-        allowNull: true,
+        allowNull: true
       },
       img: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
-      deletedAt:{
+      deletedAt: {
         type: DataTypes.BOOLEAN,
-        defaultValue:false
-      },
+        defaultValue: false
+      }
     },
     { timestamps: false }
-  );
-};
+  )
+}
