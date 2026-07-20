@@ -3,28 +3,28 @@ import { throwError } from '../../Configs/errorHandlers.js'
 
 export class CarService {
   carRepository
-   imageDeleter
-   imageField
+  imageDeleter
+  imageField
 
-  constructor(carRepository,  imageDeleter, imageField='picture') {
+  constructor (carRepository, imageDeleter, imageField = 'picture') {
     this.carRepository = carRepository
     this.imageDeleter = imageDeleter
     this.imageField = imageField
   }
 
-  async getCars() {
+  async getCars () {
     return await this.carRepository.getCars()
   }
 
-  async getCarById(id) {
+  async getCarById (id) {
     return await this.carRepository.carById(id)
   }
 
-  async getCarByQuery(patent) {
+  async getCarByQuery (patent) {
     return await this.carRepository.carByQuery(patent)
   }
 
-  async registerCar(data) {
+  async registerCar (data) {
     const newCar = Car.register({
       userId: data.userId,
       patent: data.patent,
@@ -41,7 +41,7 @@ export class CarService {
     return newCar.toDto()
   }
 
-  async updateCar(id, updateData) {
+  async updateCar (id, updateData) {
     const car = await this.carRepository.getById(id)
     if (!car) {
       throwError('Vehículo no encontrado', 404)
@@ -60,13 +60,13 @@ export class CarService {
 
     const updatedCar = await this.carRepository.update(id, car)
 
-      if (isNewImage && oldPictureUrl && this.imageDeleter) {
+    if (isNewImage && oldPictureUrl && this.imageDeleter) {
       await this.imageDeleter(oldPictureUrl)
     }
     return updatedCar ? updatedCar.toDto() : car.toDto()
   }
 
-  async changeOwner(carId, newUserId) {
+  async changeOwner (carId, newUserId) {
     // 1. Obtener el vehículo actual (para validar que exista)
     const car = await this.carRepository.getById(carId)
     if (!car) {
@@ -75,23 +75,23 @@ export class CarService {
 
     // 2. Modificar el propietario a nivel de base de datos
     await this.carRepository.changeOwner(carId, newUserId)
-    
+
     // Opcional: Modificar también la entidad en memoria si hiciera falta
     car.changeOwner(newUserId)
 
-    return `Titularidad del vehículo actualizada exitosamente.`
+    return 'Titularidad del vehículo actualizada exitosamente.'
   }
 
-  async deleteCar(id) {
+  async deleteCar (id) {
     const car = await this.carRepository.getById(id)
     if (!car) throwError('Vehículo no encontrado', 404)
     const oldPictureUrl = car[this.imageField]
-    
+
     await this.carRepository.delete(id)
 
-        if (oldPictureUrl && this.imageDeleter) {
+    if (oldPictureUrl && this.imageDeleter) {
       await this.imageDeleter(oldPictureUrl)
     }
-    return `Vehículo eliminado exitosamente`
+    return 'Vehículo eliminado exitosamente'
   }
 }

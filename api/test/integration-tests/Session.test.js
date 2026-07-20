@@ -1,5 +1,5 @@
 import session from 'supertest'
-import { describe, it, beforeAll, afterAll, expect } from 'vitest'
+import { describe, it, beforeAll, expect } from 'vitest'
 import serverTest from './testHelpers/serverTest.help.js'
 import { UserRole } from '../../src/Shared/Auth/authMiddlewares.js'
 

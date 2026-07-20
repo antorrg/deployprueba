@@ -59,7 +59,7 @@ export const errorEndWare = (err, req, res, next) => {
   if (envConfig.Status !== 'production') {
     data = err.contexts
   } else data = ''
-  //console.error('el error para ver: ', err)
+  // console.error('el error para ver: ', err)
   res.status(status).json({
     ok: false,
     message,

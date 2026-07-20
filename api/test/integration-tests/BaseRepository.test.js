@@ -33,7 +33,7 @@ describe('BaseRepository Integration test ', () => {
       it('should throw an error if id is not correct', async () => {
         try {
           const data = { title: 'updated element' }
-          const test = await testRepository.update(3, data)
+          await testRepository.update(3, data)
           throw new Error('Should throw an error but nothing happens')
         } catch (error) {
           expect(error).toBeInstanceOf(Error)
@@ -65,7 +65,7 @@ describe('BaseRepository Integration test ', () => {
         it('should throw an error if id is not correct', async () => {
           try {
             const id = 4
-            const test = await testRepository.getById(id)
+            await testRepository.getById(id)
             throw new Error('Should throw an error but nothing happens')
           } catch (error) {
             expect(error).toBeInstanceOf(Error)
@@ -79,7 +79,7 @@ describe('BaseRepository Integration test ', () => {
         it('should throw an error if id is not correct', async () => {
           try {
             const id = 4
-            const test = await testRepository.delete(id)
+            await testRepository.delete(id)
             throw new Error('Should throw an error but nothing happens')
           } catch (error) {
             expect(error).toBeInstanceOf(Error)

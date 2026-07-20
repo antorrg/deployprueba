@@ -52,7 +52,7 @@ Post.belongsTo(CategoryPost)
 // ------------------------------------
 //       Database methods
 // ------------------------------------
- function getNameDb (dbUri) {
+function getNameDb (dbUri) {
   return dbUri.split('/').slice(-1).join()
 }
 

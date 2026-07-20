@@ -1,4 +1,4 @@
-import { DataTypes, } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
 export default (sequelize) => {
   return sequelize.define('User', {
@@ -23,11 +23,11 @@ export default (sequelize) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
-    },
+    }
   },
-  { 
+  {
     timestamps: true,
-    paranoid:true
+    paranoid: true
   }
   )
 }

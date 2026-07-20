@@ -1,42 +1,43 @@
-import { throwError, processError } from "../../Configs/errorHandlers.js";
-import { BaseRepository } from "../../Shared/Repositories/BaseRepository.js";
+import { throwError, processError } from '../../Configs/errorHandlers.js'
+import { BaseRepository } from '../../Shared/Repositories/BaseRepository.js'
 import { Car as CarModel, User as UserModel, sequelize } from '../../Configs/database.js'
 import { Car } from './Car.js'
 import { QueryTypes } from 'sequelize'
 
-export class CarRepository{
-    #base
-    constructor(){
-        this.#base = new BaseRepository(CarModel, this.#mapToDomain.bind(this), 'Car')
-    }
-        // ==========================================
-        // HELPER: Mapeo de Base de Datos a Dominio
-        // ==========================================
-      #mapToDomain (record, userId = null) {
-        if (!record) return null
-        // Asegurarse de tener un objeto JS puro
-        const data = record.toJSON ? record.toJSON() : record
-        
-        // Extraer userId si viene en la consulta de join (user_car) o usar el parámetro
-        let associatedUserId = userId
-        if (data.Users && data.Users.length > 0) {
-            associatedUserId = data.Users[0].userId || data.Users[0].id
-        }
+export class CarRepository {
+  #base
+  constructor () {
+    this.#base = new BaseRepository(CarModel, this.#mapToDomain.bind(this), 'Car')
+  }
 
-        return new Car({
-            id: data.id,
-            userId: associatedUserId,
-            patent: data.patent,
-            mark: data.mark,
-            model: data.model,
-            year: data.year,
-            motorNum: data.motorNum,
-            chassisNum: data.chassisNum,
-            observations: data.observations,
-            picture: data.picture,
-            enabled: data.enabled
-        })
-      }
+  // ==========================================
+  // HELPER: Mapeo de Base de Datos a Dominio
+  // ==========================================
+  #mapToDomain (record, userId = null) {
+    if (!record) return null
+    // Asegurarse de tener un objeto JS puro
+    const data = record.toJSON ? record.toJSON() : record
+
+    // Extraer userId si viene en la consulta de join (user_car) o usar el parámetro
+    let associatedUserId = userId
+    if (data.Users && data.Users.length > 0) {
+      associatedUserId = data.Users[0].userId || data.Users[0].id
+    }
+
+    return new Car({
+      id: data.id,
+      userId: associatedUserId,
+      patent: data.patent,
+      mark: data.mark,
+      model: data.model,
+      year: data.year,
+      motorNum: data.motorNum,
+      chassisNum: data.chassisNum,
+      observations: data.observations,
+      picture: data.picture,
+      enabled: data.enabled
+    })
+  }
 
   // ==========================================
   // CRUD BÁSICO Y MÉTODOS DE DOMINIO
@@ -53,21 +54,21 @@ export class CarRepository{
     try {
       const data = carDomain.toDto()
       if (data.patent) {
-          const existingCar = await CarModel.findOne({ where: { patent: data.patent, deletedAt: null } })
-          if (existingCar) {
-            throwError('La patente de este vehiculo ya esta en uso', 409)
-          }
+        const existingCar = await CarModel.findOne({ where: { patent: data.patent, deletedAt: null } })
+        if (existingCar) {
+          throwError('La patente de este vehiculo ya esta en uso', 409)
+        }
       }
-      
+
       const newCar = await CarModel.create(data)
-      
+
       if (data.userId) {
-          const user = await UserModel.findByPk(data.userId)
-          if (user) {
-              await newCar.addUser(user)
-          } else {
-              throwError('Usuario asociado no encontrado', 404)
-          }
+        const user = await UserModel.findByPk(data.userId)
+        if (user) {
+          await newCar.addUser(user)
+        } else {
+          throwError('Usuario asociado no encontrado', 404)
+        }
       }
     } catch (error) {
       processError(error, 'Error guardando vehiculo')
@@ -77,14 +78,14 @@ export class CarRepository{
   async update (id, carDomain) {
     try {
       const data = carDomain.toDto()
-      
+
       const car = await CarModel.findByPk(id)
       if (!car) { throwError('Vehículo no encontrado', 404) }
 
       const updated = await car.update(data)
       return this.#mapToDomain(updated, data.userId)
     } catch (error) {
-      processError(error, `Error actualizando vehiculo`)
+      processError(error, 'Error actualizando vehiculo')
     }
   }
 
@@ -266,5 +267,4 @@ export class CarRepository{
 
     return car
   }
-
 }

@@ -1,9 +1,9 @@
-import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest'
+import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import * as db from '../../src/Configs/database.js'
 import envConfig from '../../src/Configs/envConfig.js'
 
 // Colocar aqui el nombre de la db de tests:
-const dbTestingName='testing'
+const dbTestingName = 'testing'
 
 describe('Environment variables', () => {
   it('should return the correct environment status and database variable', () => {
@@ -22,19 +22,19 @@ describe('Database existence', () => {
   })
   it('should query tables and return an empty array', async () => {
     const models = [
-      db.Car, 
-      db.Category, 
-      db.CategoryImg, 
-      db.CategoryPost, 
-      db.CategoryProvider, 
-      db.Commerce, 
-      db.ImagesConfig, 
-      db.Post, 
-      db.Product, 
-      db.Provider, 
-      db.Province, 
-      db.Service, 
-      db.Test, 
+      db.Car,
+      db.Category,
+      db.CategoryImg,
+      db.CategoryPost,
+      db.CategoryProvider,
+      db.Commerce,
+      db.ImagesConfig,
+      db.Post,
+      db.Product,
+      db.Provider,
+      db.Province,
+      db.Service,
+      db.Test,
       db.User
     ]
     for (const model of models) {

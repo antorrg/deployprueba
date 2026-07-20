@@ -42,7 +42,7 @@ describe('Car Routes E2E tests', () => {
   // ==========================================
   describe('Permisos de Rol: USUARIO', () => {
     it('GET /car/:carId - Debería poder obtener un vehículo por ID', async () => {
-      const targetId = cars['ABC123XX'].id
+      const targetId = cars.ABC123XX.id
       const res = await request(app)
         .get(`/car/${targetId}`)
         .set('Cookie', usuarioSession.cookies)
@@ -110,7 +110,7 @@ describe('Car Routes E2E tests', () => {
     })
 
     it('PUT /car/:carId - Debería poder editar un vehículo', async () => {
-      const targetId = cars['ABC123XX'].id
+      const targetId = cars.ABC123XX.id
       const res = await request(app)
         .put(`/car/${targetId}`)
         .set('Cookie', mecanicoSession.cookies)
@@ -132,7 +132,7 @@ describe('Car Routes E2E tests', () => {
     })
 
     it('PATCH /car/:carId/owner - Debería poder cambiar el dueño del vehículo', async () => {
-      const targetId = cars['ABC123XX'].id
+      const targetId = cars.ABC123XX.id
       const nuevoDuenoId = users['usuario@test.com'].userId
 
       const res = await request(app)
@@ -149,7 +149,7 @@ describe('Car Routes E2E tests', () => {
     })
 
     it('DELETE /car/:carId - Debería retornar 403 Forbidden (delete requiere DUENO)', async () => {
-      const targetId = cars['ABC123XX'].id
+      const targetId = cars.ABC123XX.id
       const res = await request(app)
         .delete(`/car/${targetId}`)
         .set('Cookie', mecanicoSession.cookies)
@@ -164,7 +164,7 @@ describe('Car Routes E2E tests', () => {
   // ==========================================
   describe('Permisos de Rol: DUENO', () => {
     it('DELETE /car/:carId - Debería poder eliminar un vehículo', async () => {
-      const targetId = cars['ABC123XX'].id
+      const targetId = cars.ABC123XX.id
       const res = await request(app)
         .delete(`/car/${targetId}`)
         .set('Cookie', duenoSession.cookies)
@@ -176,7 +176,7 @@ describe('Car Routes E2E tests', () => {
     })
 
     it('GET /car/:carId - El vehículo eliminado ya no debería ser encontrado', async () => {
-      const targetId = cars['ABC123XX'].id
+      const targetId = cars.ABC123XX.id
       const res = await request(app)
         .get(`/car/${targetId}`)
         .set('Cookie', duenoSession.cookies)
