@@ -2,12 +2,15 @@ import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest'
 import * as db from '../../src/Configs/database.js'
 import envConfig from '../../src/Configs/envConfig.js'
 
+// Colocar aqui el nombre de la db de tests:
+const dbTestingName='testing'
+
 describe('Environment variables', () => {
   it('should return the correct environment status and database variable', () => {
     const formatEnvInfo = `Servidor corriendo en: ${envConfig.Status}\n` +
-                   `Base de datos de testing: ${envConfig.DatabaseUrl}`
+                   `Base de datos de testing: ${db.dbName}`
     expect(formatEnvInfo).toBe('Servidor corriendo en: test\n' +
-        `Base de datos de testing: postgres://postgres:${db.getPasswordFromDbUrl(envConfig.DatabaseUrl)}@localhost:5432/testing`)
+        `Base de datos de testing: ${dbTestingName}`)
   })
 })
 describe('Database existence', () => {

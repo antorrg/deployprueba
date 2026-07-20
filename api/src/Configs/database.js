@@ -52,13 +52,11 @@ Post.belongsTo(CategoryPost)
 // ------------------------------------
 //       Database methods
 // ------------------------------------
-function getNameDb (dbUri) {
+ function getNameDb (dbUri) {
   return dbUri.split('/').slice(-1).join()
 }
-export function getPasswordFromDbUrl(dbUrl) {
-  return new URL(dbUrl).password
-}
-const dbName = getNameDb(env.DatabaseUrl)
+
+export const dbName = getNameDb(env.DatabaseUrl)
 
 async function startUp (synced = false, forced = false) {
   const icon = forced ? '🔶' : '🟠'
