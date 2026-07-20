@@ -1,6 +1,4 @@
 import { responder } from '../../Shared/Utils/responder.js'
-import { userService } from '../../Shared/dependencies.js'
-import * as auth from '../../Shared/Auth/authMiddlewares.js'
 
 export class UserController {
   constructor (

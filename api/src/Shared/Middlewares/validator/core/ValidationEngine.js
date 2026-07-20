@@ -82,7 +82,7 @@ export class ValidationEngine {
         throw new Error(`Invalid value for '${field}': unsupported type '${valueType}' for rules`)
       }
       const isAllowed = allowed.some((candidate) => {
-        return typeof candidate === valueType && candidate === value
+        return typeof candidate === valueType && candidate === value // eslint-disable-line valid-typeof
       })
       if (!isAllowed) {
         throw new Error(`Invalid value for '${field}'. Received: '${String(value)}'. Allowed: ${allowed.join(', ')}`)

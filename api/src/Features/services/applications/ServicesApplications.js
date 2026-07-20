@@ -12,7 +12,7 @@ export class ServicesApplications {
     if (!prop || typeof (prop) !== 'string') throw new Error('Type no valido o ausente')
     const type = prop.trim().toUpperCase()
     const allowed = ['SERVICE', 'PRESUPUESTO', 'REPARACION']
-    if (!allowed.includes(typeId)) {
+    if (!allowed.includes(type)) {
       throw new Error('Type no valido')
     }
     return type
@@ -23,13 +23,13 @@ export class ServicesApplications {
     return prop
   }
 
-  static date_in (prop) {
-    if (prop !== undefined && typeof prop !== 'date') throw new Error('Invalid date_in')
+  static dateIn (prop) {
+    if (prop !== undefined && typeof prop !== 'string') throw new Error('Invalid date_in')
     return prop
   }
 
-  static date_out (prop) {
-    if (prop !== undefined && typeof prop !== 'date') throw new Error('Invalid date_out')
+  static dateOut (prop) {
+    if (prop !== undefined && typeof prop !== 'string') throw new Error('Invalid date_out')
     return prop
   }
 

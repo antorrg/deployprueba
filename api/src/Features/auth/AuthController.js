@@ -1,4 +1,3 @@
-import { AuthService } from './AuthService.js'
 import { Auth } from '../../Shared/Auth/authMiddlewares.js'
 import { responder } from '../../Shared/Utils/responder.js'
 import { middError } from '../../Configs/errorHandlers.js'

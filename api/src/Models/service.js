@@ -15,11 +15,11 @@ export default (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    date_in: {
+    dateIn: {
       type: DataTypes.DATEONLY,
       allowNull: false
     },
-    date_out: {
+    dateOut: {
       type: DataTypes.DATEONLY,
       allowNull: true
     },

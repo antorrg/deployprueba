@@ -6,14 +6,14 @@ import { CarService } from '../Features/car/CarService.js'
 import { AuthService } from '../Features/auth/AuthService.js'
 import envConfig from '../Configs/envConfig.js'
 
-const imageUploader = null
+let imageUploader = null
 let deleteImageByUrl = null
 
 if (envConfig.Status !== 'production') {
   // Importación dinámica: este módulo no se evaluará ni se incluirá
   // a menos que no estemos en producción.
   const { ImagesLocals } = await import('../../test/helpers/imagesService/Images.local.js')
-  // imageUploader = ImagesLocals.save
+  imageUploader = ImagesLocals.save // eslint-disable-line no-unused-vars
   deleteImageByUrl = ImagesLocals.remove
 } else {
   // Aquí se importará el servicio externo real para Cloudinary, AWS S3, etc.

@@ -22,7 +22,7 @@ yarn-error.log*
 
 # Output directory
 /dist
-/serverAssets
+/serverAssets/**
 !/serverAssets/.gitkeep
 
 # IDE files

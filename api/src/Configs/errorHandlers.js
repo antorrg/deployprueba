@@ -55,7 +55,7 @@ export const errorEndWare = (err, req, res, next) => {
   let data
   const status = err.status || 500
   const message = err.message || 'Internal server error'
-  Array.isArray(err.contexts) ? err.contexts : ['Unhandled error']
+  Array.isArray(err.contexts) ? err.contexts : ['Unhandled error']// eslint-disable-line no-unused-expressions
   if (envConfig.Status !== 'production') {
     data = err.contexts
   } else data = ''

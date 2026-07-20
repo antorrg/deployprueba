@@ -66,19 +66,20 @@ async function startUp (synced = false, forced = false) {
       console.log(`${icon} Database postgres "${dbName}" synced with force: ${forced}\n`)
     } else {
       await sequelize.authenticate()
-      console.log(`\n🟢​ Database postgres "${dbName}" initialized successfully!!\n`)
+
+      console.log(`\n🟢​ Database postgres "${dbName}" initialized successfully!!\n`)// eslint-disable-line no-irregular-whitespace
     }
   } catch (error) {
-    console.error(`❌​ Error inicializing database "${dbName}" `)
+    console.error(`❌​ Error inicializing database "${dbName}" `)// eslint-disable-line no-irregular-whitespace
     throw error
   }
 }
 const closedDatabase = async () => {
   try {
     await sequelize.close()
-    console.log(`🔵​​ Database postgres "${dbName}" is closed!!`)
+    console.log(`🔵​​ Database postgres "${dbName}" is closed!!`)// eslint-disable-line no-irregular-whitespace
   } catch (error) {
-    console.error(`❌​ Error closing database "${dbName}" `)
+    console.error(`❌​ Error closing database "${dbName}" `)// eslint-disable-line no-irregular-whitespace
     throw error
   }
 }
