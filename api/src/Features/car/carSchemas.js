@@ -1,3 +1,5 @@
+import envConfig from '../../Configs/envConfig.js'
+
 export const createCar = {
   userId: {
     type: 'string',
@@ -7,7 +9,6 @@ export const createCar = {
   },
   patent: {
     type: 'string',
-    default: 'S/P',
     sanitize: {
       trim: true
     }
@@ -54,7 +55,7 @@ export const createCar = {
   },
   picture: {
     type: 'string',
-    default: 'default.jpg',
+    default: envConfig.DefaultImgCar,
     sanitize: {
       trim: true
     }

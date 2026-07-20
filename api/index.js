@@ -16,6 +16,8 @@ import { startUp } from './src/Configs/database.js'
 // import fillTables from './data/initialFunctions/fillTables.js'
 import env from './src/Configs/envConfig.js'
 
+
+console.log(getPasswordFromDbUrl(env.DatabaseUrl))
 async function serverBootstrap () {
   try {
     await startUp()

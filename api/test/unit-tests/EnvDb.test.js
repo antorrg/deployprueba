@@ -7,7 +7,7 @@ describe('Environment variables', () => {
     const formatEnvInfo = `Servidor corriendo en: ${envConfig.Status}\n` +
                    `Base de datos de testing: ${envConfig.DatabaseUrl}`
     expect(formatEnvInfo).toBe('Servidor corriendo en: test\n' +
-        'Base de datos de testing: postgres://postgres:antonio@localhost:5432/testing')
+        `Base de datos de testing: postgres://postgres:${db.getPasswordFromDbUrl(envConfig.DatabaseUrl)}@localhost:5432/testing`)
   })
 })
 describe('Database existence', () => {
@@ -18,7 +18,22 @@ describe('Database existence', () => {
     await db.closedDatabase()
   })
   it('should query tables and return an empty array', async () => {
-    const models = [db.Car, db.Category, db.CategoryImg, db.CategoryPost, db.CategoryProvider, db.Commerce, db.ImagesConfig, db.Post, db.Product, db.Provider, db.Province, db.Service, db.Test, db.User]
+    const models = [
+      db.Car, 
+      db.Category, 
+      db.CategoryImg, 
+      db.CategoryPost, 
+      db.CategoryProvider, 
+      db.Commerce, 
+      db.ImagesConfig, 
+      db.Post, 
+      db.Product, 
+      db.Provider, 
+      db.Province, 
+      db.Service, 
+      db.Test, 
+      db.User
+    ]
     for (const model of models) {
       const records = await model.findAll()
       expect(Array.isArray(records)).toBe(true)
